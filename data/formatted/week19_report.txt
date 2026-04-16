@@ -1,0 +1,36 @@
+MMU, Apr 13, 2026 (Apr 06 – Apr 10)
+
+Key Updates
+
+    Mobile App
+        - fixed that annoying bug where the app would crash on startup #jent-15202
+        - enhc: added more logging to help with debugging, still need to figure out why some users are getting that weird error 
+        - update: started working on #mob-1456 to improve push notifications, hoping to finish it by next week
+
+    Live Interview
+        - feat: added support for multiple interviewers in a single session #live-1201
+        - bug: found an issue with the audio sync, opened #bug-1876 to track it
+        - chore: refactored some old code to make it more readable
+
+    Integration
+        - fixed issue with candidate data not being synced properly #int-1098
+        - update: worked on #jent-1500 to improve error handling for api calls
+
+    Candidate Recommendation
+        - enhc: improved the ranking algorithm to prioritize more relevant candidates #rec-0803
+
+Key Achievements
+    - Fixed multiple bugs and issues across different modules
+    - Added new features to improve user experience
+    - Improved code readability and maintainability
+
+Challenges Encountered
+    - Issues with the data ingestion pipeline
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - Finish #mob-1456 to improve push notifications
+    - Finish #rec-0810 to add more filters to the search results
+    - Dedicate more time to resolve issues with the data ingestion pipeline

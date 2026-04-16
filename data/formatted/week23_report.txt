@@ -1,0 +1,35 @@
+MMU, Apr 13, 2026 (Apr 06 – Apr 10)
+
+Key Updates
+
+    Interview API
+        - fixed #jent-15202 bug where interviews would sometimes not get recorded
+        - did enhancements #enh-2345 to improve the overall response time, shaving off around 30ms
+
+    Auto Job Apply Script
+        - updated the script to handle new job posting formats #update-123
+        - fixed a small issue with #bug-1098 where the script would crash if a job posting was missing certain fields
+        - added a new feature #feat-3456 to allow the script to automatically follow up with employers after a certain amount of time
+
+    Authentication
+        - updated dependencies and fixed security vulnerabilities #chore-456
+        - noticed a weird issue with #jent-15000 where auth tokens would sometimes expire too quickly
+
+    React Interview
+        - fixed bugs #bug-2342 #bug-2343 #bug-2344
+        - added a new feature #feat-2341 to allow interviewers to leave notes on candidate performances
+
+Key Achievements
+    - Fixed the #jent-15202 bug in Interview API
+    - Enhanced Auto Job Apply Script with new feature #feat-3456
+    - Made progress on React Interview module with multiple bug fixes and a new feature
+
+Challenges Encountered
+    - Issues with testing the Auto Job Apply Script, need to figure out a better way to mock out job postings
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - Start working on Integration module, specifically #jent-16000 to integrate with new job boards
+    - Tackle #jent-15566 on the Interview API

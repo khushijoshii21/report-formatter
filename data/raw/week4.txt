@@ -1,0 +1,22 @@
+Mobile App: 
+- fixed crash on ios when user tries to upload pic #jent-15202
+- enhc: added dark mode support, still needs testing
+- update: dependencies for react native, had to bump version
+
+Interview API: 
+- feat: added new endpoint for interview scheduling #int-2345
+- bug: fixed issue with candidate list not sorting properly #bug-1234
+- chore: refactored some code for better readability
+- bug: still having issues with websockets, need to investigate
+
+Notification Service: 
+- fixed issue with emails not sending due to wrong env variable
+- update: changed email template to new design
+
+Analytics Dashboard: 
+- enhc: added filtering for date range #ad-18902
+- having some issues with data not loading, might be db connection issue
+- next week: finish up dashboard redesign and start testing
+
+challenges: still having issues with websocket connection in Interview API, might need to bring in outside help 
+next week tasks: finish testing for Mobile App dark mode, start work on new Notification Service feature #ns-2341

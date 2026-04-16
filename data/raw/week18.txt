@@ -1,0 +1,22 @@
+week 18 notes
+Interview API: 
+- fixed #jent-15202 interview scheduling endpoint was returning 500 error when no slots available
+- enhc: added support for recurring interviews, still need to test with different recurrence patterns
+- update: bumped node version to 16.14.2 to fix some dependency issues
+
+Mobile App: 
+- feat: implemented dark mode #mob-234, still need to test on different devices
+- chore: removed some unused code and cleaned up the repo a bit
+- bug: #bug-1234 fixed issue with interview list not updating after sync
+
+Notification Service: 
+- fixed #notif-1098 email notifications were being sent to wrong recipients due to db query issue
+- enhc: added more logging to help with debugging #notif-1123
+
+React Interview: 
+- fixed #jent-15902 interview recording was not stopping properly when interview ends
+- update: changed some component library versions to match the rest of the project
+- chore: reformatted some code to match our style guide
+
+next week: need to finish testing recurring interviews and implement #jent-15205 
+challenge: getting the different parts of the system to work together seamlessly for the upcoming demo

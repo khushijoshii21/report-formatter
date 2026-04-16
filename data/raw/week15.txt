@@ -1,0 +1,17 @@
+week 15 notes
+auth module: 
+- fixed #jent-15202, auth token not expiring correctly, was a config issue
+- enhc: added support for oauth 2.0 in #auth-145
+- still having issues with #bug-1234, login redirect not working on safari
+
+email service: 
+- updated email templates to use new branding (#brand-update-1)
+- chore: moved email service to new server, should be more stable now
+- bug: #email-234, emails not sending to yahoo addresses, investigating
+
+integration: 
+- feat: added stripe payment integration (#stripe-123)
+- update: finished #int-156, slack integration now working
+- having some issues with webhooks, #int-157, hopefully fixed by end of week
+next week: need to finish #int-158, dropbox integration and start on #jent-15203, auth audit
+still trying to figure out #bug-1245, intermittent 500 errors on auth login

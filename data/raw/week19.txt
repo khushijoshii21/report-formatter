@@ -1,0 +1,19 @@
+week 19 notes - 
+mobile app: 
+- fixed that annoying bug where the app would crash on startup #jent-15202
+- enhc: added more logging to help with debugging, still need to figure out why some users are getting that weird error 
+- update: started working on #mob-1456 to improve push notifications, hoping to finish it by next week
+
+live interview: 
+- feat: added support for multiple interviewers in a single session #live-1201
+- bug: found an issue with the audio sync, opened #bug-1876 to track it
+- chore: refactored some old code to make it more readable
+
+integration: 
+- fixed issue with candidate data not being synced properly #int-1098
+- update: worked on #jent-1500 to improve error handling for api calls
+
+candidate recommendation: 
+- enhc: improved the ranking algorithm to prioritize more relevant candidates #rec-0803
+- next week: need to finish #rec-0810 to add more filters to the search results
+challenges: still having some issues with the data ingestion pipeline, might need to dedicate more time to it next week

@@ -1,0 +1,17 @@
+week 12 notes
+- Search Engine: 
+  * fixed #jent-15202 - query params not being encoded correctly
+  * enhc: added support for boolean search queries
+  * update: dependencies for search lib - now using 3.2.1
+- Authentication: 
+  * feat: implemented passwordless login with magic links #auth-234
+  * chore: cleaned up some unused code in auth controller
+  * bug: #bug-1234 - login not working on safari - still not fixed
+- Analytics Dashboard: 
+  * update: new dashboard design - still in review
+  * fixed #ad-1567 - wrong data being displayed on user engagement chart
+- Auto Job Apply Script: 
+  * feat: added support for applying to jobs on linkedin #jobs-145
+  * enhc: improved script performance by 30% 
+next week: finish #jent-15202 follow up tasks, review analytics dashboard design 
+challenges: getting auth to work on older browsers, safari login issue still open

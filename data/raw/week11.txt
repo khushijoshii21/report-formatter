@@ -1,0 +1,17 @@
+week 11 notes:
+- search engine: 
+  * fixed query parsing bug #jent-15202, was causing random errors
+  * enhc: improved result ranking algo, still needs more testing
+  * update: deps for search engine lib, no major issues found
+- email service: 
+  * feat: added support for custom email templates #feat-2345
+  * chore: refactored email sender class for better readability
+  * bug: #bug-1234 - email not sending to some users, still investigating
+  * bug: fixed email content encoding issue #jent-17892
+- notification service: 
+  * chore: updated notification db schema to include priority field
+  next week: 
+  - finalize search engine ranking algo
+  - test custom email templates
+challenges: still having issues with email service performance, need to look into it ASAP 
+also need to discuss with team about #jent-15202 fix, not sure if it's the best solution

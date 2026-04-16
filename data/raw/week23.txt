@@ -1,0 +1,9 @@
+Interview API - finally fixed that annoying #jent-15202 bug where interviews would sometimes not get recorded, was a pain to track down but turned out to be a simple fix. also did some enhancements #enh-2345 to improve the overall response time, shaved off around 30ms. still need to work on #jent-15566 but that's a bigger task
+
+Auto Job Apply Script - updated the script to handle new job posting formats #update-123, also fixed a small issue with #bug-1098 where the script would crash if a job posting was missing certain fields. added a new feature #feat-3456 to allow the script to automatically follow up with employers after a certain amount of time
+
+Authentication - had to do some chores #chore-456 to update dependencies and fix some security vulnerabilities, nothing too exciting but necessary. did notice a weird issue with #jent-15000 where auth tokens would sometimes expire too quickly, need to look into that
+
+React Interview - lots of work on this module this week, fixed a bunch of bugs #bug-2342 #bug-2343 #bug-2344, also added a new feature #feat-2341 to allow interviewers to leave notes on candidate performances. still need to work on #jent-15251 to improve the overall ui
+
+next week - need to start working on Integration module, specifically #jent-16000 to integrate with new job boards. also want to tackle #jent-15566 on the Interview API. challenges - still having some issues with testing the Auto Job Apply Script, need to figure out a better way to mock out the job postings

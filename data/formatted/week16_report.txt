@@ -1,0 +1,39 @@
+MMU, Apr 13, 2026 (Apr 06 – Apr 10)
+
+Key Updates
+
+    Notification Service
+        - fixed bug where notifications werent being sent to certain users #jent-15202
+        - enhc: added support for custom notification templates
+        - update: migrated to new database cluster, seems to be performing better
+
+    Mobile App
+        - feat: implemented new onboarding flow #mob-4321
+        - chore: removed unused dependencies, reduced app size by 10%
+
+    Auto Job Apply Script
+        - bug: fixed issue where script was applying to same job multiple times #bug-9876
+        - fix: added error handling for job postings with missing info
+
+    Jobma Bot
+        - enhc: improved bot's ability to handle user queries, reduced error rate by 20% #jbot-2198
+        - update: updated bot's training data to include new job categories
+
+    Payment Gateway
+        - fix: resolved issue with payment processing for international transactions #pay-7562
+        - chore: updated payment gateway api to latest version, no major changes needed on our end
+
+Key Achievements
+    - Fixed bugs in Notification Service and Auto Job Apply Script
+    - Improved Jobma Bot's ability to handle user queries
+    - Implemented new onboarding flow in Mobile App
+
+Challenges Encountered
+    - still having issues with Notification Service and Jobma Bot integration, need to figure out why theyre not communicating properly
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - need to work on improving Auto Job Apply Script performance, its still slow
+    - review and fix Jobma Bot's conversation flow issues

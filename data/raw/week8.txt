@@ -1,0 +1,22 @@
+week 8 notes - 
+Analytics Dashboard: 
+- fixed issue with data not loading on firefox #jent-15202
+- enhc: added new chart type for user engagement metrics
+- update: dependencies for ad dashboard lib
+
+Search Engine: 
+- feat: implemented new search algo #bug-1234 - still testing
+- chore: removed unused code in search index builder
+- bug: fix for search query params not being encoded properly #se-2121
+- update: elasticsearch to 7.10.2
+
+Auto Job Apply Script: 
+- fixed bug where script would crash on invalid job postings #aja-101
+- enhc: added support for multiple job boards 
+- next week: look into integrating with more job boards, currently only supporting indeed and linkedin
+
+had some issues with tests failing on Jenkins but think its a env issue not code related 
+next week: 
+- prioritize fixing search algo issues 
+- add more tests for ad dashboard lib 
+- meet with design team to discuss new analytics dashboard ui

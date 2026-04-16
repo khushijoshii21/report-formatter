@@ -1,0 +1,36 @@
+MMU, Apr 13, 2026 (Apr 06 – Apr 10)
+
+Key Updates
+
+    Integration module
+        - fixed #jent-15202, auth token refresh was causing issues with webhooks
+        - enhc: added support for multipart uploads, should help with large file transfers
+        - chore: updated dependencies to latest versions, mostly minor patches
+
+    Search Engine
+        - feat: implemented new ranking algorithm, seems to be performing better in testing
+        - bug: #bug-1234, search results were not being filtered correctly for non-admin users
+        - update: #search-456, tweaked search result snippet generation to include more context
+
+    Live Interview
+        - fixed #live-9012, interviewer video feed was not being displayed correctly in chrome
+        - enhc: added support for multiple simultaneous interview sessions
+
+Key Achievements
+    - Implemented new ranking algorithm for Search Engine
+    - Added support for multipart uploads in Integration module
+    - Fixed interviewer video feed issue in Live Interview
+
+Challenges Encountered
+    - getting the new ranking algorithm to work with our existing search index is proving tricky
+    - trying to debug the screen sharing bug in live interview is a pain due to inconsistent reproducibility
+    - #search-789, relevance scoring is off for some queries
+    - #live-1111, screen sharing bug
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - finish implementing new live interview UI
+    - start working on search engine query optimization
+    - look into integration module performance issues

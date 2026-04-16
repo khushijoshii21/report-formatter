@@ -1,0 +1,30 @@
+MMU, Apr 13, 2026 (Apr 06 – Apr 10)
+
+Key Updates
+
+    React Interview
+        - fix: #jent-15400, 15401
+        - Fixed broken link on candidate profile page
+        - Updated interview timer logic
+
+    Integration
+        - Tested webhook integration with third party service
+        - Fixed authentication issue with external API
+
+    Candidate Recommendation
+        - update: improved matching algorithm accuracy
+        - fix: wrong candidate showing in recommendations
+
+Key Achievements
+    - Improved React Interview functionality with fixes and updates
+    - Successfully integrated with third party service through webhooks
+    - Enhanced Candidate Recommendation accuracy
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - None

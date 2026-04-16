@@ -1,0 +1,77 @@
+MMU, Apr 13, 2026 (Apr 06 – Apr 10)
+
+Key Updates
+
+    React Interview
+        - Changes added for the notification and email for ID verification
+        - fix: #jent-15202, 15225, 15226, 15146, 15158, 15149, 15058
+        - Fixed few more sentry issues
+        - enhancement - #jent-15125, implemented proctoring timeline for practice question in interview
+
+    Integration
+        - Created sandbox and checked feasibility of copyleaks integration
+        - Checked feasibility and multiple scenarios for originality.ai
+        - Client questions related to jobma api and webhooks
+
+    Live Interview
+        - fix: jent-15166, 15186
+        - enhc: created v2 branch for new design, using version tag in ci, docker and sentry
+        - chore: setup husky to remind to bump version tag & run tests before push
+        - fix: replaced NODE_ENV usage with NEXT_PUBLIC_ENV
+        - enhc: using single env and docker compose files
+        - enhc: reduced deployment times and docker image size
+        - chore: changes regarding above commit in ci cd
+        - chore: updated packages, using node 24 in ci
+        - chore: getting trusted urls from env now.
+        - chore: removed type checking for application settings
+        - chore: removed source attribute and related logic
+        - chore: removed job related logic (UNDP)
+
+    Interview API
+        - update: #jent- 15230: Added Failed email and notification for ID verification
+
+    Candidate Recommendation
+        - update: APIs for compatibility with the PHP side requirements
+        - update: cr_crons for the new table requirements.
+        - fix: profile pic and applied id in the CR APIs
+
+    Jobma bot
+        - Bug: #jent-15232(Dislike feedback submitted without mandatory comment on first attempt)
+        - Added more intents for 'get interview details'
+
+    Auto Job Apply Script:
+        - feat: Tested the auto job apply script and analyzed results for performance and accuracy.
+        - enhc: Evaluated script performance with a 4-hour run 
+        - enhc: Continued improvements in LinkedIn profile extraction and bug fixes.
+        - enhc: Performed R&D for supporting additional job portals.
+        - feat: Integrated global job pool save API.
+        - chore: Conducted project demo and walkthrough.
+        - fix: fixed issues with low/empty LinkedIn profile data.
+
+    MISC
+        - Did research for deep fake detection in the videos.
+        - Implemented a basic code of Mediasoup as an alternative to Janus to understand the load.
+        - fix: #jent-14052, AI score mismatch due to excel questions
+        - Fix failure email functionality for the live interview summary
+        - Candidate support issues
+        - Create configurable env used for all scripts
+        - Interview - Saurav: Rejected
+        - Resolve video worker exception
+        - Regenerate proctoring for candidates 
+        - Create Doc for feature - Applicant source tracking
+
+Key Achievements
+    - Fixed several issues
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - update live interview's design.
+    - feat: UI changes for theme.
+    - feat: Integrate get jobs from job pool API.
+    - Integration API - Add more coverage.
+    - Fix: Search in candidate recommendation.

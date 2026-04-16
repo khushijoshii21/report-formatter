@@ -1,0 +1,22 @@
+week 7 notes
+Payment Gateway:
+- fixed #jent-15202, stupid bug where payments were being processed twice
+- enhc: added support for paypal in #pay-145
+- update: refactored the payment processing func to make it more readable
+
+Interview API:
+- feat: implemented new endpoint for retrieving interview questions #int-201
+- chore: updated dependencies to latest version
+- bug: #bug-1234, still having issues with interview scheduling, need to look into it more
+
+Admin Dashboard:
+- fix: #ad-109, dashboard not loading for some admins, turned out to be a caching issue
+- enhc: added new charts for user engagement metrics #ad-156
+
+next week:
+- finish implementing interview scheduling fix
+- start working on payment gateway testing
+
+had some issues with the payment gateway this week, 
+the doubles payments bug was a nightmare to track down 
+but at least its fixed now

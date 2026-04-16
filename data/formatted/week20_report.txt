@@ -1,0 +1,41 @@
+MMU, Apr 13, 2026 (Apr 06 – Apr 10)
+
+Key Updates
+
+    Candidate Recommendation
+        - fixed bug where candidate score wasn't updating #jent-15202
+        - enhc: added new filter options for recruiter dashboard
+        - update: upgraded dependencies to latest version
+
+    Integration
+        - feat: implemented new api endpoint for user data #int-2345
+        - chore: cleaned up old code and removed unused vars
+
+    Payment Gateway
+        - bug: fixed payment processing issue with stripe #bug-1234
+        - bug: still having issues with paypal payments, need to investigate further
+        - update: added support for new payment method
+
+    Email Service
+        - enhc: improved email templating system
+        - fixed issue with email notifications not sending #email-456
+
+    React Interview
+        - feat: added new coding challenge for react interview #ri-1111
+
+Key Achievements
+    - Fixed bug in candidate score updating
+    - Implemented new API endpoint for user data
+    - Improved email templating system
+
+Challenges Encountered
+    - Issues with paypal payments
+    - Candidate recommendation scoring issues #jent-15202
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - Finish paypal payment issue
+    - Start on new project requirements
+    - Update jira tickets with latest progress

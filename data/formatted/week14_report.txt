@@ -1,0 +1,40 @@
+MMU, Apr 13, 2026 (Apr 06 – Apr 10)
+
+Key Updates
+
+    Jobma Bot
+        - fixed issue with bot not sending notifications #jent-15202
+        - enhc: added support for multiple job posting formats
+        - still having issues with bot crashing on large job feeds, need to investigate
+
+    Payment Gateway
+        - update: switched to new api endpoint for payment processing #pay-2345
+        - feat: added support for paypal payments
+        - bug: users are reporting issues with saved payment methods, looking into it #bug-1678
+
+    Integration
+        - chore: updated dependencies to latest version
+        - fixed issue with data not syncing properly between services #jent-14567
+
+    Admin Dashboard
+        - enhc: improved performance of job listing page
+        - having some challenges with getting the new ui design to work, might need to bring in a designer to help out
+
+Key Achievements
+    - Fixed issue with Jobma Bot not sending notifications #jent-15202
+    - Added support for paypal payments in Payment Gateway
+    - Improved performance of job listing page in Admin Dashboard
+
+Challenges Encountered
+    - Jobma Bot crashing on large job feeds
+    - Issues with saved payment methods in Payment Gateway #bug-1678
+    - Challenges with getting the new ui design to work in Admin Dashboard
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - finish implementing new job posting format for Jobma Bot
+    - start working on Auto Job Apply Script to integrate with Jobma Bot
+    - look into issues with Payment Gateway and saved payment methods 
+    - investigate crash issue with Jobma Bot

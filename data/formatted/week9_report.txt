@@ -1,0 +1,36 @@
+MMU, Apr 13, 2026 (Apr 06 – Apr 10)
+
+Key Updates
+
+    Search Engine
+        - fixed #jent-15202, search results were not sorting correctly
+        - enhc: added more logging for search queries, should help with debugging
+        - update: deployed new search engine config, seems to be performing better
+
+    Interview API
+        - feat: added new endpoint for retrieving interview questions #int-543
+        - bug: #bug-1234, interview api was returning 500 for invalid requests, now returns 400
+        - chore: removed unused code in interview api, cleaned up some dependencies
+        - update: started working on #jent-16432, interviewing api optimization
+
+    Live Interview
+        - fix: #live-219, fixed issue with live interview video feed not loading
+        - enhc: improved live interview ui, added more feedback for interviewees
+        - bug: found issue with live interview not ending properly, need to investigate further #live-220
+
+Key Achievements
+    - Fixed search result sorting issue (#jent-15202)
+    - Improved interview API with new endpoint and bug fixes
+    - Resolved live interview video feed issue (#live-219)
+
+Challenges Encountered
+    - still having issues with search engine performance, need to look into it more
+    - interview api optimization is proving to be more difficult than expected
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - finish #jent-16432, interview api optimization
+    - start working on #live-221, live interview audio issues 
+    - review search engine logs to see if new config is working as expected

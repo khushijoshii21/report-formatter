@@ -1,0 +1,10 @@
+week 10 updates
+ Authentication - fixed #jent-15202, was causing issues with token refresh, enhc: added new tests for edge cases
+still need to figure out why auth is failing for some users, maybe something with the new docker setup
+interview api - feat: added support for video recording, update: bumped dependencies to latest versions
+ Payment Gateway - chore: removed unused payment method, bug: #bug-1234 still not fixed, causes errors on checkout
+need to follow up with payment provider on this one
+ Search Engine - enhc: improved search result ranking, fix: #jent-15000 was causing search to fail on certain queries
+ Live Interview - nothing much here, just some minor fixes, gonna focus on this next week
+next week tasks: finish #jent-15200, start working on #feat-1500, try to fix #bug-1234 once and for all
+challenges: getting the payment gateway to work with our new db schema is a nightmare, and the interview api video recording is causing some issues with browser compatibility

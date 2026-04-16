@@ -1,0 +1,26 @@
+week 14 notes
+
+Jobma Bot: 
+- fixed issue with bot not sending notifications #jent-15202
+- enhc: added support for multiple job posting formats
+- still having issues with bot crashing on large job feeds, need to investigate
+
+Payment Gateway:
+- update: switched to new api endpoint for payment processing #pay-2345
+- feat: added support for paypal payments
+- bug: users are reporting issues with saved payment methods, looking into it #bug-1678
+
+Integration: 
+- chore: updated dependencies to latest version
+- fixed issue with data not syncing properly between services #jent-14567
+
+Admin Dashboard: 
+- enhc: improved performance of job listing page
+- having some challenges with getting the new ui design to work, might need to bring in a designer to help out
+
+next week: 
+- finish implementing new job posting format for Jobma Bot
+- start working on Auto Job Apply Script to integrate with Jobma Bot
+- look into issues with Payment Gateway and saved payment methods 
+
+still need to investigate crash issue with Jobma Bot, maybe its a memory leak or something
