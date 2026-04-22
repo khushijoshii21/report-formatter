@@ -2,13 +2,55 @@ import os
 import re
 import json
 from datetime import datetime
-from groq import Groq
 from dotenv import load_dotenv
 
 load_dotenv()
 
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
+# -------------------------------------------------------
+# CONFIGURATION — reads everything from config.json
+# -------------------------------------------------------
+def load_config():
+    config_path = "config.json"
+    if not os.path.exists(config_path):
+        print("ERROR: config.json not found. Please create it first.")
+        exit()
+    with open(config_path, "r") as f:
+        return json.load(f)
+
+config = load_config()
+
+
+# -------------------------------------------------------
+# API CLIENT SETUP — picks the right API based on config
+# -------------------------------------------------------
+def setup_client():
+    provider = config["api_provider"].lower()
+
+    if provider == "groq":
+        from groq import Groq
+        return Groq(api_key=os.getenv("GROQ_API_KEY")), "groq"
+
+    elif provider == "openai":
+        from openai import OpenAI
+        return OpenAI(api_key=os.getenv("OPENAI_API_KEY")), "openai"
+
+    elif provider == "gemini":
+        from google import genai
+        client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+        return client, "gemini"
+
+    else:
+        print(f"ERROR: Unknown API provider '{provider}' in config.json")
+        print("Supported providers: groq, openai, gemini")
+        exit()
+
+client, provider = setup_client()
+
+
+# -------------------------------------------------------
+# SYSTEM PROMPT
+# -------------------------------------------------------
 SYSTEM_PROMPT = """
 You are a weekly engineering report formatter.
 Your job is to take raw development notes and convert them into a clean, structured weekly report.
@@ -19,12 +61,10 @@ Always output in EXACTLY this format — never skip any section:
 
 Key Updates
 
-    {Module Name}
+    {Module or Person Name}
         - {update 1}
         - {update 2}
-
-    {Another Module}
-        - {update}
+        - {update 3}
 
 Key Achievements
     - {summarize the main wins in 2-3 points}
@@ -36,22 +76,88 @@ Team Challenges
     - {team-level challenges, or write: None}
 
 Key Tasks Scheduled for Next Week
-    - {extract all next week tasks from the input, or write: None}
+    - {next week tasks or None}
 
-Rules you must follow:
-- Group all updates under their module/project name
-- Keep ticket IDs exactly as they are (like #jent-15202)
-- If no challenges are mentioned, write None
-- If no next week tasks are mentioned, write None
-- Extract next week items into the last section
-- Use clean indentation as shown above
-- Never add extra commentary or explanation outside the format
+CRITICAL rules you must follow — read every rule carefully:
+
+RULE 1 — GROUPING:
+- If the input is organized by PERSON NAME (like Arun, Sumit, Milind) keep it grouped by person name
+- If the input is organized by MODULE NAME (like React Interview, Live Interview) keep it grouped by module name
+- Never change the grouping structure that already exists in the input
+- Never merge person names into module names or vice versa
+
+RULE 2 — BULLET POINTS:
+- Every single update must be on its own separate line with a dash (-)
+- Never merge multiple updates into one long line
+- Never use commas to join separate updates together
+- Each fix, feat, enhc, chore, update must be its own separate bullet point
+- If a sub-section has multiple items keep them as one bullet
+
+RULE 3 — TICKET IDs:
+- Keep ticket IDs exactly as they appear in the raw input
+- Never add extra # symbols
+- Never repeat # if it already appears once in a list
+- For ticket lists like #14798, 15058, 14888 keep them together in one bullet as written
+
+RULE 4 — ALREADY FORMATTED INPUT:
+- If the input already looks mostly formatted and structured, do minimal changes
+- Only fix indentation, add missing dashes, and ensure all 5 sections exist
+- Do not restructure or reorder content that is already well organized
+- Do not rewrite or summarize content that is already clean
+
+RULE 5 — EMPTY SECTIONS:
+- If a module has no updates or just a dash (-) keep it as:
+    {Module Name}
+        -
+- Never delete modules even if they appear empty
+
+RULE 6 — PRESERVE CONTENT:
+- Never summarize or shorten any update
+- Never rewrite updates in your own words
+- Keep exact wording from the input
+- Keep all technical terms, function names, and code references exactly as written
+
+RULE 7 — ACHIEVEMENTS:
+- Write exactly 3 achievement points based on what was actually done
+- Each point must mention a specific feature, fix, or module with its actual name
+- Each point must include what specifically was done — not vague summaries
+- NEVER write generic statements like "Fixed several issues" or "Implemented new features"
+- Good example: "Implemented cron-based scheduling and Xvfb headless browser in Auto Job Apply Script"
+- Bad example: "Fixed several issues and improved performance"
+
+RULE 8 — SUB-HEADINGS INSIDE PERSON SECTIONS:
+- When a person's section has sub-headings (like Bug:, ATS:, Candidate Recommendation:, AI Interview:)
+  those sub-headings must appear as their OWN indented heading — NOT repeated on every bullet
+- Format it like this:
+
+    PersonName
+        SubHeading:
+            - update 1
+            - update 2
+        AnotherSubHeading:
+            - update 1
+
+- NEVER format it like this (wrong):
+    PersonName
+        - SubHeading: update 1
+        - SubHeading: update 2
+
+- The sub-heading appears ONCE as a label, then all its items are indented below it
+- This applies to any sub-section inside a person block: Bug, ATS, fixes, features etc.
+
+RULE 9 — NO HALLUCINATION OR COMMENTARY:
+- Never add content that does not exist in the raw input
+- Never copy updates from one person's section into another person's section
+- Never add explanatory text like "was not present" or "note:" or any commentary
+- Never modify the meaning of any update
+- If a line says "fix: #14804, using empty string as initial name" output it EXACTLY as written
+- Output only what is in the raw input — nothing more, nothing less
 """
 
 
 # -------------------------------------------------------
 # SORTING — sorts files in proper numerical order
-# week1, week2, week3... instead of week1, week10, week11
+# week1, week2, week3... not week1, week10, week11
 # -------------------------------------------------------
 def sort_key(filename):
     numbers = re.findall(r'\d+', filename)
@@ -59,17 +165,13 @@ def sort_key(filename):
 
 
 # -------------------------------------------------------
-# EDGE CASE 1: Check if input is too short to be valid
+# EDGE CASE CHECKS
 # -------------------------------------------------------
 def is_too_short(text):
     words = text.split()
     return len(words) < 10
 
 
-# -------------------------------------------------------
-# EDGE CASE 2: Check if input has any recognizable
-# module or project names
-# -------------------------------------------------------
 def has_no_modules(text):
     common_module_keywords = [
         "interview", "integration", "api", "bot", "script",
@@ -84,9 +186,6 @@ def has_no_modules(text):
     return matches < 2
 
 
-# -------------------------------------------------------
-# EDGE CASE 3: Check if input looks like gibberish
-# -------------------------------------------------------
 def looks_like_gibberish(text):
     letters = sum(c.isalpha() for c in text)
     total = len(text.replace(" ", "").replace("\n", ""))
@@ -95,41 +194,23 @@ def looks_like_gibberish(text):
     return (letters / total) < 0.6
 
 
-# -------------------------------------------------------
-# EDGE CASE 4: Check if ticket IDs are present
-# -------------------------------------------------------
-def has_ticket_ids(text):
-    pattern = r'#[a-zA-Z]+-\d+'
-    return bool(re.search(pattern, text))
-
-
-# -------------------------------------------------------
-# FUNCTION: validate_input
-# Runs all edge case checks and returns list of issues
-# -------------------------------------------------------
 def validate_input(text):
     issues = []
-
     if not text.strip():
         issues.append("empty")
         return issues
-
     if is_too_short(text):
         issues.append("too_short")
-
     if looks_like_gibberish(text):
         issues.append("gibberish")
-
     if has_no_modules(text):
         issues.append("no_modules")
-
     return issues
 
 
 # -------------------------------------------------------
 # FUNCTION: ask_user_for_input
-# When something is missing or unclear, asks the user
-# to provide the missing information interactively
+# Handles all edge cases interactively
 # -------------------------------------------------------
 def ask_user_for_input(issues, current_text):
     print("\n" + "=" * 60)
@@ -165,7 +246,6 @@ def ask_user_for_input(issues, current_text):
                 lines.append(line)
             return "\n".join(lines)
         else:
-            # User confirmed it is valid — return as is and bypass re-validation
             return "CONFIRMED:" + current_text
 
     if "too_short" in issues:
@@ -198,7 +278,7 @@ def ask_user_for_input(issues, current_text):
 
 # -------------------------------------------------------
 # FUNCTION: ask_for_metadata
-# Always asks user to confirm team name, date, date range
+# Confirms team name, date, date range once per run
 # -------------------------------------------------------
 def ask_for_metadata(team_name, report_date, date_range):
     print("\n" + "-" * 40)
@@ -225,8 +305,7 @@ def ask_for_metadata(team_name, report_date, date_range):
 
 # -------------------------------------------------------
 # FUNCTION: format_report
-# Sends validated raw notes to Groq AI and returns
-# the formatted report
+# Sends raw notes to whichever API is configured
 # -------------------------------------------------------
 def format_report(raw_text, team_name, report_date, date_range):
     user_message = f"""
@@ -238,18 +317,77 @@ Raw updates to format:
 {raw_text}
 """
 
-    print("\n  Sending to Groq API... please wait.")
+    print(f"\n  Sending to {provider.upper()} API ({config['model']})... please wait.")
 
-    response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
-        messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": user_message}
-        ],
-        max_tokens=2000,
-        temperature=0.3
-    )
-    return response.choices[0].message.content
+    if provider in ["groq", "openai"]:
+        response = client.chat.completions.create(
+            model=config["model"],
+            messages=[
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": user_message}
+            ],
+            max_tokens=config["max_tokens"],
+            temperature=config["temperature"]
+        )
+        return response.choices[0].message.content
+
+    elif provider == "gemini":
+        from google.genai import types
+        response = client.models.generate_content(
+            model=config["model"],
+            contents=SYSTEM_PROMPT + "\n\n" + user_message,
+            config=types.GenerateContentConfig(
+                max_output_tokens=config["max_tokens"],
+                temperature=config["temperature"]
+            )
+        )
+        return response.text
+
+
+# -------------------------------------------------------
+# FUNCTION: fix_ticket_ids
+# Fixes two ticket ID formatting issues:
+# 1. #14798, #15058, #14888 → #14798, 15058, 14888
+#    (# should appear only once at the start)
+# 2. inte- 1059, 1067 → #inte- 1059, 1067
+#    jent- 14954 → #jent- 14954
+#    (add # if missing at start of ticket reference)
+# -------------------------------------------------------
+def fix_ticket_ids(text):
+    lines = text.split("\n")
+    fixed_lines = []
+
+    for line in lines:
+
+        # Fix 1 — add # before jent- and inte- if missing
+        # Handles both "jent-15038" and "jent- 15038" (with space)
+        line = re.sub(r'(?<!#)(jent-\s*|inte-\s*)(\d+)', r'#\1\2', line)
+
+        # Fix 2 — add # before standalone numbers after fix:/bug: etc
+        # Example: "fix: 14969" → "fix: #14969"
+        line = re.sub(r'(fix:|bug:|enhc:|update:|feat:)\s+(\d+)', r'\1 #\2', line)
+
+        # Fix 3 — remove duplicate # in ticket ID lists
+        # Strategy: find first # position, then remove ALL subsequent #
+        # that appear before digits or ticket prefixes
+        if line.count("#") > 1:
+            first_hash = line.index("#")
+            before = line[:first_hash + 1]
+            after = line[first_hash + 1:]
+            # Remove # before digits like #15036
+            after = re.sub(r'#(\d)', r'\1', after)
+            # Remove # before jent- with or without space like #jent-15036
+            after = re.sub(r'#(jent-)', r'\1', after)
+            # Remove # before inte- with or without space like #inte-1059
+            after = re.sub(r'#(inte-)', r'\1', after)
+            # Now also remove the prefix entirely for subsequent tickets
+            # "jent-15036" after first ticket becomes just "15036"
+            after = re.sub(r',\s*(jent-\s*|inte-\s*)(\d+)', r', \2', after)
+            line = before + after
+            
+        fixed_lines.append(line)
+
+    return "\n".join(fixed_lines)
 
 
 # -------------------------------------------------------
@@ -264,12 +402,10 @@ def check_quality(formatted_text):
         "Team Challenges",
         "Key Tasks Scheduled for Next Week"
     ]
-
     missing = []
     for section in required_sections:
         if section not in formatted_text:
             missing.append(section)
-
     if missing:
         print(f"  WARNING — missing sections: {', '.join(missing)}")
         return False
@@ -280,10 +416,11 @@ def check_quality(formatted_text):
 
 # -------------------------------------------------------
 # FUNCTION: save_report
-# Saves formatted report to data/formatted/ folder
+# Saves formatted report to configured output folder
 # -------------------------------------------------------
 def save_report(formatted_text, filename):
-    filepath = f"data/formatted/{filename}_report.txt"
+    folder = config["formatted_folder"]
+    filepath = f"{folder}/{filename}_report.txt"
     with open(filepath, "w") as f:
         f.write(formatted_text)
     print(f"  Saved to: {filepath}")
@@ -295,7 +432,7 @@ def save_report(formatted_text, filename):
 # Saves a JSON log of all processed files
 # -------------------------------------------------------
 def save_log(log_entries):
-    log_path = "data/formatted/processing_log.json"
+    log_path = f"{config['formatted_folder']}/processing_log.json"
     with open(log_path, "w") as f:
         json.dump(log_entries, f, indent=2)
     print(f"\nLog saved to: {log_path}")
@@ -305,23 +442,36 @@ def save_log(log_entries):
 # FUNCTION: process_all_files
 # Main controller — finds all files, sorts numerically,
 # skips already formatted ones, validates input,
-# asks for missing info, formats, checks quality, saves
+# asks for missing info, formats, fixes tickets,
+# checks quality, saves
 # -------------------------------------------------------
-def process_all_files(team_name, report_date, date_range):
+def process_all_files():
 
-    raw_folder = "data/raw"
+    team_name = config["team_name"]
+    report_date = config["report_date"]
+    date_range = config["date_range"]
+    raw_folder = config["raw_folder"]
+    skip_existing = config["skip_existing"]
+    ask_confirmation = config["ask_metadata_confirmation"]
 
-    # Sort files numerically — week1, week2, week3...
     all_files = sorted(
         [f for f in os.listdir(raw_folder) if f.endswith(".txt")],
         key=sort_key
     )
 
     if not all_files:
-        print("No .txt files found in data/raw/ folder.")
+        print("No .txt files found in raw folder.")
         return
 
-    print(f"Found {len(all_files)} file(s) to process: {all_files}\n")
+    print(f"\nConfiguration:")
+    print(f"  API Provider : {config['api_provider'].upper()}")
+    print(f"  Model        : {config['model']}")
+    print(f"  Team         : {config['team_name']}")
+    print(f"  Date         : {config['report_date']}")
+    print(f"  Date Range   : {config['date_range']}")
+    print(f"  Skip existing: {config['skip_existing']}")
+    print()
+    print(f"Found {len(all_files)} file(s) to process")
     print("=" * 60)
 
     log_entries = []
@@ -333,9 +483,9 @@ def process_all_files(team_name, report_date, date_range):
 
         print(f"\nProcessing: {filename}")
 
-        # Skip if already formatted — saves API tokens
-        output_path = f"data/formatted/{file_base}_report.txt"
-        if os.path.exists(output_path):
+        # Skip if already formatted
+        output_path = f"{config['formatted_folder']}/{file_base}_report.txt"
+        if skip_existing and os.path.exists(output_path):
             print(f"  SKIPPED — already formatted")
             log_entries.append({
                 "file": filename,
@@ -349,19 +499,19 @@ def process_all_files(team_name, report_date, date_range):
         with open(file_path, "r") as f:
             raw_text = f.read()
 
-        # Validate the input before sending to AI
+        # Validate input
         issues = validate_input(raw_text)
 
         if issues:
             print(f"  Issues found: {', '.join(issues)}")
             raw_text = ask_user_for_input(issues, raw_text)
 
-           # Skip re-validation if user explicitly confirmed the input
             if raw_text.startswith("CONFIRMED:"):
                 raw_text = raw_text.replace("CONFIRMED:", "", 1)
                 issues_after = []
             else:
                 issues_after = validate_input(raw_text)
+
             if issues_after:
                 print(f"  Input still has issues. Skipping {filename}.")
                 log_entries.append({
@@ -372,20 +522,22 @@ def process_all_files(team_name, report_date, date_range):
                 })
                 continue
 
-        # Ask user to confirm metadata only once per run
-        if not metadata_confirmed:
+        # Ask metadata once per run
+        if not metadata_confirmed and ask_confirmation:
             team_name, report_date, date_range = ask_for_metadata(
                 team_name, report_date, date_range
             )
             metadata_confirmed = True
 
-        # Send to AI and get formatted report
+        # Format the report
         formatted = format_report(raw_text, team_name, report_date, date_range)
+
+        # Fix ticket ID formatting
+        formatted = fix_ticket_ids(formatted)
 
         # Check quality
         passed = check_quality(formatted)
 
-        # If quality check failed ask user what to do
         if not passed:
             print("  Quality check failed. Options:")
             print("  1. Retry with the same input")
@@ -395,6 +547,7 @@ def process_all_files(team_name, report_date, date_range):
             if choice == "1":
                 print("  Retrying...")
                 formatted = format_report(raw_text, team_name, report_date, date_range)
+                formatted = fix_ticket_ids(formatted)
                 passed = check_quality(formatted)
             else:
                 print(f"  Skipping {filename}")
@@ -426,8 +579,4 @@ def process_all_files(team_name, report_date, date_range):
 # MAIN PROGRAM
 # -------------------------------------------------------
 if __name__ == "__main__":
-    process_all_files(
-        team_name="MMU",
-        report_date="Apr 20, 2026",
-        date_range="Apr 13 – Apr 20"
-    )
+    process_all_files()

@@ -1,0 +1,27 @@
+MMU, 2024-02-26 (2024-02-19 - 2024-02-25)
+
+Key Updates
+    Admin Dashboard
+        - Fixed #jent-15202
+        - Enhancement #jent-15230: added new user role
+        - #jent-15220 needs a fix asap
+    Email Service
+        - Chore: updated dependencies #jent-15190
+    React Interview
+        - Fixed bug #jent-15215
+
+Key Achievements
+    - Fixed critical bug #jent-15215 in React Interview
+    - Added new user role to Admin Dashboard #jent-15230
+    - Updated dependencies for Email Service #jent-15190
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - Tackle #jent-15240 for Email Service
+    - Update on React Interview #jent-15250
+    - Fix #jent-15220 for Admin Dashboard

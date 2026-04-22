@@ -1,0 +1,14 @@
+{
+    "team_name": "MMU",
+    "report_date": "Apr 20, 2026",
+    "date_range": "Apr 13 – Apr 20",
+    "api_provider": "groq",
+    "model": "llama-3.1-8b-instant",
+    "max_tokens": 2000,
+    "temperature": 0.3,
+    "raw_folder": "data/raw",
+    "formatted_folder": "data/formatted",
+    "dataset_folder": "data/dataset",
+    "skip_existing": true,
+    "ask_metadata_confirmation": true
+}

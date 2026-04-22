@@ -1,0 +1,29 @@
+MMU, Apr 20, 2026 (Apr 13 – Apr 20)
+
+Key Updates
+
+    Search Engine
+        - fix: #jent-16006 search results not updating on filter change
+        - enhc: improved search ranking algorithm for better results
+        - fix: #jent-16007 special characters breaking search query
+    Admin Dashboard
+        - update: redesigned user management table
+        - fix: #jent-16008 pagination not resetting on filter change
+        - chore: updated dashboard dependencies
+    General
+        - fixed a bug
+
+Key Achievements
+    - Fixed search results update issue on filter change in Search Engine
+    - Improved search ranking algorithm in Search Engine for better results
+    - Redesigned user management table in Admin Dashboard
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - feat: add advanced search filters
+    - enhc: improve search response time

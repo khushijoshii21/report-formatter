@@ -1,0 +1,27 @@
+MMU, Apr 20, 2026 (Apr 13 – Apr 20)
+
+Key Updates
+
+    React Interview
+        - fix: #jent-16001 fixed empty state on candidate profile page
+        - enhc: added loading spinner during interview fetch
+        - chore: cleaned up unused imports in interview components
+
+    Live Interview
+        - fix: #jent-16002 video stream dropping on slow connections
+        - enhc: improved reconnection logic for unstable networks
+
+Key Achievements
+    - Fixed empty state on candidate profile page
+    - Improved video stream stability on slow connections
+    - Enhanced interview fetch with loading spinner
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - feat: add screen sharing support
+    - fix: audio sync issues on mobile devices

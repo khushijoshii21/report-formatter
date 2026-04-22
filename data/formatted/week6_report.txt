@@ -1,0 +1,73 @@
+MMU, Apr 20, 2026 (Apr 13 – Apr 20)
+
+Key Updates
+
+    Arun
+        Bug:
+            - #inte- 1059, 1067, 1068, 1080, 1064
+            - #jent- 14954, 14811
+        ATS:
+            - Nexus ATS custom field changes
+            - Tracker RMS token expiry issue
+            - Integrate Interview agent to jobma bot
+            - Pre screening template changes for ATS
+            - fixed some issues for Ask AI enhancement
+
+    Sumit
+        Candidate Recommendation
+            - Added cr_canonical_skills.py (200+ skills, tech + non-tech); unified CANONICAL_SKILLS import
+            - Embedding: canonicalize soft skills (normalize_signals), include in vectors, replace "Engineer/general engineering" → "Professional/general professional"
+            - fix: Search: direct skills import, remove "engineer" suffix, use "general professional" fallback, include + score soft_skills, 
+            - update: JD min length 200, add non-tech examples in prompt
+        AI Interview
+            - fix: inner page footer nav buttons UI
+            - fix: #14969 Enhancement - AI Interview -Confirmation Popup on Browser Back Navigation.
+            - fix: #jent-15038, 15036
+
+    Milind
+        Live Interview
+            - feat: generate job related questions
+        Employer API
+            - feat: added getJobSetup,  postJobSetup and generateJobQuestions api
+        Jobma Bot
+            - fix: tracklist shows 4 items, like every other list
+            - fix: prod db var fix
+            - fix: #14790, counting all values, including deleted
+            - fix: #14769, got correct link for greenhouse video
+            - fix: #14730, revalidating date on formsubmit
+            - fix: #14751, add pagination to track applicant list
+            - fix: #14786, sync formatted_QA integration responses with domain.yml utters
+            - fix: #14792, check against undefined, as 0 is also falsy
+            - fix: #14804, using "" as initial name
+
+    Prashant
+        React coding interview 
+            - fix: fixed a time duration issue when interview is reinvited(UNDP interview process)
+            - fix: #14798, 15058, 14888, 15054, 14995, 14881, 15028, 15000, 14898, 14979, 14977, 14928, 14877, 14853, 14725, 14943, 14876, 14899, 1439 (jobma interview process)
+            - Fixed few sentry issues
+
+    Pratik
+        Auto Job Apply Script:
+            - feat: Replaced sleep-based execution with cron-based scheduling for the job scraper.
+            - feat: Implemented Xvfb for headless browser execution.
+            - enhc: Added persistent session handling for improved continuity.
+            - enhc: Improved stealth mechanisms using Xvfb and session persistence.
+            - chore: Added containerization setup for better deployment and isolation.
+            - enhc: Continued improvements in LinkedIn profile extraction including skills section.
+            - fix: Addressed location issues in LinkedIn extracted resume data.
+
+Key Achievements
+    - Implemented cron-based scheduling and Xvfb headless browser in Auto Job Apply Script.
+    - Added canonical skills and unified CANONICAL_SKILLS import in Candidate Recommendation.
+    - Fixed several issues in React coding interview, including time duration issue and sentry issues.
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - feat: api integrations for extra data related to jobs (Pratik)
+    - enhc: add more companies to job extraction (Pratik)
+    - #jent-15041 (sumit)

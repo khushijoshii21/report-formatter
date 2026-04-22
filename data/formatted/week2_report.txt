@@ -1,0 +1,33 @@
+MMU, 2024-09-16 (2024-09-09 - 2024-09-15)
+
+Key Updates
+    Interview API
+        - fix for #jent-15202
+        - chore work #jent-15432 scheduled for next week
+    React Interview
+        - feat - new video player #jent-15001
+        - enhc to improve ui #jent-15302
+        - #jent-15501 scheduled for next week
+    Integration
+        - bug fix #jent-15111
+        - update to work with search engine #jent-14902
+    Notification Service
+        - chore work - updated dependencies #jent-15421
+    Search Engine
+        - chore work #jent-15243
+        - update to fix issues #jent-15002
+
+Key Achievements
+    - Fixed critical bug #jent-15111 on integration
+    - Completed feat for new video player #jent-15001 on react interview
+    - Improved ui on react interview #jent-15302
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - finish #jent-15432 on interview api
+    - start #jent-15501 on react interview
