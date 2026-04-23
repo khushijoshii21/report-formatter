@@ -1,0 +1,24 @@
+MMU, Apr 27, 2026 (Apr 20 – Apr 27)
+
+Key Updates
+
+    React Interview
+        - fix: #jent-15300 fixed login timeout issue
+        - enhc: improved interview loading speed
+    Live Interview
+        - feat: added screen sharing support
+        - fix: #jent-15301 fixed audio drop on mobile
+
+Key Achievements
+    - Implemented fix for login timeout issue in React Interview
+    - Improved interview loading speed in React Interview
+    - Added screen sharing support in Live Interview
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - None

@@ -1,93 +1,297 @@
 [
   {
-    "file": "sample.txt",
+    "file": "test_dates.txt",
     "status": "success",
     "quality_check": "passed",
-    "saved_to": "data/formatted/sample_report.txt",
-    "timestamp": "2026-04-23 10:31:53"
+    "saved_to": "data/formatted/test_dates_report.txt",
+    "timestamp": "2026-04-23 12:43:14"
   },
   {
     "file": "test_empty.txt",
     "status": "skipped",
     "reason": "already formatted",
-    "timestamp": "2026-04-23 10:31:53"
+    "timestamp": "2026-04-23 12:43:14"
   },
   {
     "file": "test_gibberish.txt",
     "status": "skipped",
     "reason": "already formatted",
-    "timestamp": "2026-04-23 10:31:53"
+    "timestamp": "2026-04-23 12:43:14"
   },
   {
     "file": "test_nomodules.txt",
     "status": "skipped",
     "reason": "already formatted",
-    "timestamp": "2026-04-23 10:31:53"
+    "timestamp": "2026-04-23 12:43:14"
   },
   {
     "file": "test_short.txt",
     "status": "skipped",
     "reason": "already formatted",
-    "timestamp": "2026-04-23 10:31:53"
+    "timestamp": "2026-04-23 12:43:14"
   },
   {
     "file": "week1.txt",
     "status": "skipped",
     "reason": "already formatted",
-    "timestamp": "2026-04-23 10:31:53"
+    "timestamp": "2026-04-23 12:43:14"
   },
   {
     "file": "week2.txt",
     "status": "skipped",
     "reason": "already formatted",
-    "timestamp": "2026-04-23 10:31:53"
+    "timestamp": "2026-04-23 12:43:14"
   },
   {
     "file": "week3.txt",
     "status": "skipped",
     "reason": "already formatted",
-    "timestamp": "2026-04-23 10:31:53"
+    "timestamp": "2026-04-23 12:43:14"
   },
   {
     "file": "week4.txt",
     "status": "skipped",
     "reason": "already formatted",
-    "timestamp": "2026-04-23 10:31:53"
+    "timestamp": "2026-04-23 12:43:14"
   },
   {
     "file": "week5.txt",
     "status": "skipped",
     "reason": "already formatted",
-    "timestamp": "2026-04-23 10:31:53"
+    "timestamp": "2026-04-23 12:43:14"
   },
   {
     "file": "week6.txt",
     "status": "skipped",
     "reason": "already formatted",
-    "timestamp": "2026-04-23 10:31:53"
+    "timestamp": "2026-04-23 12:43:14"
   },
   {
     "file": "week7.txt",
     "status": "skipped",
     "reason": "already formatted",
-    "timestamp": "2026-04-23 10:31:53"
+    "timestamp": "2026-04-23 12:43:14"
   },
   {
     "file": "week8.txt",
     "status": "skipped",
     "reason": "already formatted",
-    "timestamp": "2026-04-23 10:31:53"
+    "timestamp": "2026-04-23 12:43:14"
   },
   {
     "file": "week9.txt",
     "status": "skipped",
     "reason": "already formatted",
-    "timestamp": "2026-04-23 10:31:53"
+    "timestamp": "2026-04-23 12:43:14"
   },
   {
     "file": "week10.txt",
     "status": "skipped",
     "reason": "already formatted",
-    "timestamp": "2026-04-23 10:31:53"
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week11.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week12.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week13.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week14.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week15.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week16.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week17.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week18.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week19.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week20.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week21.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week22.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week23.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week24.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week25.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week26.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week27.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week28.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week29.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week30.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week31.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week32.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week33.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week34.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week35.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week36.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week37.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week38.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week39.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week40.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week41.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week42.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week43.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
+  },
+  {
+    "file": "week44.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 12:43:14"
   }
 ]
