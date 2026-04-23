@@ -131,3 +131,43 @@ The system prompt now handles:
 - Groq (free, default)
 - OpenAI
 - Gemini
+
+## FastAPI Service
+
+The project can also run as an API service.
+
+### Start the API server
+source venv/bin/activate
+uvicorn api:app --reload
+
+### API runs at
+http://127.0.0.1:8000
+
+### Interactive documentation
+http://127.0.0.1:8000/docs
+
+### Endpoints
+
+GET  /         — Welcome message
+GET  /health   — Health check
+GET  /config   — Current configuration
+POST /format-report       — Format a single report
+POST /format-report/batch — Format multiple reports
+
+### Example request
+POST /format-report
+{
+  "raw_text": "your raw notes here",
+  "team_name": "MMU",
+  "report_date": "Apr 23, 2026",
+  "date_range": "Apr 13 - Apr 20"
+}
+
+### Example response
+{
+  "formatted_report": "MMU, Apr 23, 2026...",
+  "quality_check": true,
+  "missing_sections": [],
+  "model_used": "llama-3.3-70b-versatile",
+  "api_provider": "groq"
+}
