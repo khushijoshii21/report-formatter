@@ -1,1 +1,15 @@
-week 4 notes - looked into #jent-15202 for Admin Dashboard, got it fixed. also did some chore work for Email Service like updating dependencies #jent-15190. React Interview module had a nasty bug #jent-15215 but that's done now. some enhc for Admin Dashboard #jent-15230, feat: added new user role. for next week - tackle #jent-15240 for Email Service, hopefully get some time for update on React Interview #jent-15250. oh and #jent-15220 for Admin Dashboard needs a fix asap
+Milind
+  feat: #inte- 1059 implemented new UI components
+  fix: #14798, 15058 fixed video drop issue
+  enhc: improved search performance
+Rohit
+  chore: updated dependencies
+  feat: #jent- 14954 added screen sharing
+  bug: #jent-15202 fixed audio sync issue
+Rahul
+  update: #inte- 1067 updated interview questions
+  fix: #14888 fixed login bug
+  enhc: improved loading speed
+Next Week Tasks
+  Rohit: work on #jent-15100
+  Milind: implement #inte-1061

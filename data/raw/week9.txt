@@ -1,0 +1,22 @@
+Search Engine
+  fix: #14798 fixed login bug
+  enhc: improved search performance
+  feat: #jent-15038 added voice search
+  chore: updated dependencies
+Interview API
+  feat: #inte-1059 added support for multithreading
+  fix: #15058 fixed video drop issue
+  update: improved API documentation
+Candidate Recommendation
+  enhc: improved candidate ranking algorithm
+  fix: #jent-14954 fixed bug in candidate matching
+  feat: added support for diversity metrics
+Mobile App
+  feat: #14798, 15058 added new features for job search
+  fix: #jent-15202 fixed audio sync issue
+  chore: updated app store listing
+Email Service
+  feat: #inte-1067 implemented email templating
+  fix: #15038 fixed bug in email rendering
+  enhc: improved email deliverability
+  update: added support for email analytics

@@ -1,0 +1,42 @@
+MMU, Apr 20, 2026 (Apr 13 - Apr 20)
+
+Key Updates
+
+    Rahul
+        - feat: #jent-15202 added screen sharing
+        - fix: #14798, 15058 fixed video drop issue
+        - chore: updated dependencies
+    Rohit
+        - enhc: improved loading speed
+        - update: #inte- 1059, 1067 fixed login bug
+        - bug: #jent-14954 fixed audio sync issue
+    Neha
+        - feat: #jent-15100 added new dashboard
+        - fix: #14888, 14900 fixed UI issues
+        - chore: updated documentation
+    Sumit
+        - feat: #inte- 15200 implemented cron-based scheduling
+        - enhc: improved search performance
+        - fix: #jent-15002 fixed integration issue
+    Arun
+        Bug:
+            - #inte- 1059, 1067
+        ATS:
+            - #jent-14954
+        Next Week Tasks:
+            - Review Nexus ATS changes
+
+Key Achievements
+    - Implemented cron-based scheduling in Auto Job Apply Script
+    - Added new dashboard
+    - Improved search performance
+    - Added screen sharing
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - Review Nexus ATS changes

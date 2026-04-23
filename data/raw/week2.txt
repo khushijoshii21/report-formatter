@@ -1,1 +1,23 @@
-week 2 updates - interviewed api got a fix for #jent-15202, also did some chore work on notification service, like updated dependencies #jent-15421. react interview had a big feat - new video player #jent-15001, and some enhc to make the ui better #jent-15302. integration had a bug that was fixed #jent-15111, and some update to make it work with search engine #jent-14902. next week - finish #jent-15432 on interview api, and start #jent-15501 on react interview. search engine had some chore work too #jent-15243, and an update to fix some issues #jent-15002
+Prashant
+  feat: #jent-15202 added payment gateway
+  fix: #14798 fixed login bug
+  enhc: improved loading speed
+Amit
+  chore: updated dependencies
+  update: #inte- 1059, 1067 fixed dashboard issue
+  feat: added screen sharing
+Pratik
+  bug: #jent-14954 fixed audio sync issue
+  fix: #15058 fixed video drop issue
+  enhc: improved search performance
+Sumit
+  feat: #inte-1078 added new dashboard
+  chore: updated UI components
+  fix: #14888 fixed login issue
+Arun
+  feat: #jent-15100 added new analytics
+  enhc: improved cron job performance
+  fix: #14900 fixed data sync issue
+Next Week Tasks
+  Review code and fix bugs
+  Implement new feature

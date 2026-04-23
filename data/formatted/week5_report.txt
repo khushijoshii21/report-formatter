@@ -1,23 +1,26 @@
-MMU, 2024-02-05 (2024-01-29 - 2024-02-04)
+MMU, Apr 20, 2026 (Apr 13 - Apr 20)
 
 Key Updates
+
     Live Interview
-        - Fixed audio sync issue #jent-15202
-        - Updated UI #jent-15111
-    Analytics Dashboard
-        - Updated data visualizations #jent-14902
-        - Added feature to track user engagement #jent-15001
+        - feat: #jent-15038 added support for 4k video
+        - fix: #14798, 15058 fixed video drop issue
+        - enhc: improved loading speed
+        - chore: updated dependencies
+    Jobma Bot
+        - feat: #inte-1059 implemented AI powered chatbot
+        - fix: #jent-14954 fixed intent recognition issue
+        - update: improved bot response accuracy
     Authentication
-        - Fixed bug with token expiration #jent-14805
-        - Improved password hashing #jent-15215
-        - Updated login flow #jent-14905
-    Admin Dashboard
-        - Added feature to manage user roles #jent-15102
+        - feat: #15062 added two factor authentication
+        - fix: #14888 fixed login bug
+        - chore: updated authentication library
+        - bug: #jent-15100 fixed session expiration issue
 
 Key Achievements
-    - Fixed critical audio sync issue in Live Interview #jent-15202
-    - Improved data visualizations in Analytics Dashboard #jent-14902
-    - Added new feature to track user engagement in Analytics Dashboard #jent-15001
+    - Implemented AI powered chatbot in Jobma Bot
+    - Added support for 4k video in Live Interview
+    - Added two factor authentication in Authentication
 
 Challenges Encountered
     - None
@@ -26,4 +29,4 @@ Team Challenges
     - None
 
 Key Tasks Scheduled for Next Week
-    - Work on Analytics Dashboard updates #jent-15250
+    - None

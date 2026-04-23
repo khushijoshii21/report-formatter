@@ -93,94 +93,67 @@ GENERATOR_PROMPT = """
 You are a software engineering report generator.
 Your job is to generate realistic weekly engineering data in JSON format.
 
-Given a list of modules or person names, generate:
-1. Raw messy engineering notes (like a developer would write them)
-2. A perfectly formatted report from those same notes
-
 Output ONLY valid JSON in this exact structure — nothing else, no markdown, no backticks:
 
 {
-  "raw": "the raw messy notes here",
-  "formatted": "the clean formatted report here"
+  "raw": "the raw messy notes here with \\n for line breaks",
+  "formatted": "the clean formatted report here with \\n for line breaks"
 }
 
+IMPORTANT: Use \\n for all line breaks inside JSON strings. Never use actual newlines inside JSON strings.
+
 Rules for raw notes:
-- Randomly choose ONE of these two styles:
-  STYLE A: Organize by PERSON NAME (like Arun, Sumit, Milind)
-            Each person has 2-3 sub-sections (like Bug:, ATS:, Live Interview:)
-            Each sub-section has 2-4 items
-  STYLE B: Organize by MODULE NAME (like React Interview, Live Interview)
-            Each module has 3-5 updates directly underneath
+- Each module or person must be on its own line
+- Each update must be on its own line indented with spaces
 - Mix update types: fix, enhc, chore, feat, update, bug
-- Include realistic ticket IDs like inte- 1059, jent- 14954, #14798, #15058
-- Some weeks have next week tasks at the bottom, some don't
-- Some weeks have challenges, most don't
-- Keep it realistic and varied — messy, informal, like real developer notes
-- Never make it look like a proper report already
+- Include realistic ticket IDs like inte- 1059, jent- 14954, #14798
+- Ticket IDs appear at START of update not at end
+- Some weeks have next week tasks, some don't
+- Example of good raw notes format:
+  React Interview\\n  fix: #jent-15202 fixed audio sync issue\\n  enhc: improved loading speed\\n  chore: updated dependencies\\nLive Interview\\n  feat: added screen sharing\\n  fix: #14798, 15058 fixed video drop issue
 
 Rules for formatted report:
-- Always use this EXACT structure with proper indentation:
+- Always use this EXACT structure:
 
-MMU, Apr 20, 2026 (Apr 13 - Apr 20)
-
-Key Updates
-
-    {Person or Module Name}
-        {SubHeading if exists}:
-            - update 1
-            - update 2
-        {Another SubHeading}:
-            - update 1
-
-    {Next Person or Module}
-        - update 1
-        - update 2
-
-Key Achievements
-    - specific achievement 1 mentioning actual feature name
-    - specific achievement 2 mentioning actual module name
-    - specific achievement 3 mentioning actual fix with detail
-
-Challenges Encountered
-    - None
-
-Team Challenges
-    - None
-
-Key Tasks Scheduled for Next Week
-    - next week task 1
-    - next week task 2 or None if no tasks mentioned
+MMU, Apr 20, 2026 (Apr 13 - Apr 20)\\n\\nKey Updates\\n\\n    {Module or Person Name}\\n        - update 1\\n        - update 2\\n\\nKey Achievements\\n    - specific achievement 1\\n    - specific achievement 2\\n    - specific achievement 3\\n\\nChallenges Encountered\\n    - None\\n\\nTeam Challenges\\n    - None\\n\\nKey Tasks Scheduled for Next Week\\n    - task 1 or None
 
 CRITICAL formatting rules:
-1. SUB-HEADINGS: If person has sub-sections (Bug:, ATS:) they appear as indented labels NOT repeated on every bullet
-   CORRECT:
-       Arun
-           Bug:
-               - #inte- 1059, 1067
-               - #jent- 14954, 14811
-           ATS:
-               - Nexus ATS custom field changes
-   WRONG:
-       Arun
-           - Bug: #inte- 1059, 1067
-           - ATS: Nexus ATS custom field changes
-
-2. TICKET IDs: # appears only ONCE at start of a ticket list
+1. TICKET IDs: # appears only ONCE at start of ticket list
    CORRECT: - fix: #14798, 15058, 14888
    WRONG:   - fix: #14798, #15058, #14888
 
-3. TICKET PREFIXES: inte- and jent- must have # added
-   CORRECT: - #inte- 1059, 1067, 1068
-   WRONG:   - inte- 1059, 1067, 1068
+2. TICKET PREFIXES: inte- and jent- must have # added
+   CORRECT: - fix: #jent-15202 fixed issue
+   WRONG:   - fix: jent-15202 fixed issue
 
-4. ACHIEVEMENTS: Always specific, never generic
+3. UPDATE FORMAT: Every update starts with type prefix THEN ticket ID THEN description
+   CORRECT: - fix: #14798 fixed login bug
+   CORRECT: - feat: #jent-15100 added new dashboard
+   CORRECT: - enhc: improved search performance
+   WRONG:   - fixed login bug #14798
+   WRONG:   - #14798 fix login bug
+
+4. SUB-HEADINGS for person-grouped reports:
+   CORRECT:
+       Arun
+           Bug:\\n            - #inte- 1059, 1067\\n           ATS:\\n            - Nexus ATS changes
+   WRONG:
+       Arun
+           - Bug: #inte- 1059
+           - ATS: Nexus ATS changes
+
+5. ACHIEVEMENTS: Always specific, never generic
    CORRECT: - Implemented cron-based scheduling in Auto Job Apply Script
    WRONG:   - Fixed several issues and improved performance
+   WRONG:   - Implemented UI fixes in Analytics Dashboard
 
-5. PRESERVE CONTENT: Never summarize or rewrite updates
-   Keep exact wording from raw notes
+6. DATE FORMAT: Always use month name format
+   CORRECT: MMU, Apr 20, 2026 (Apr 13 - Apr 20)
+   WRONG:   MMU, 2024-02-05 (2024-01-29 - 2024-02-04)
 
-6. NO HALLUCINATION: Never add content not in raw notes
+7. PRESERVE ALL DETAILS from raw notes in formatted report
+   Never summarize or shorten updates
+   Keep exact wording and all ticket IDs
 """
 
 
@@ -269,10 +242,37 @@ Remember to output only valid JSON.
     raw_response = re.sub(r'```\s*', '', raw_response)
     raw_response = raw_response.strip()
 
-    # Parse the JSON response
-    data = json.loads(raw_response)
+    # Find JSON object — extract only the part between first { and last }
+    json_match = re.search(r'\{.*\}', raw_response, re.DOTALL)
+    if json_match:
+        raw_response = json_match.group()
 
-    return data["raw"], data["formatted"]
+    # Remove ALL control characters that break JSON parsing
+    # This includes tabs, newlines, carriage returns inside strings
+    raw_response = re.sub(r'[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]', '', raw_response)
+
+    # Try direct parse first
+    try:
+        data = json.loads(raw_response)
+        return data["raw"], data["formatted"]
+    except json.JSONDecodeError:
+        pass
+
+    # If direct parse fails — try extracting raw and formatted manually
+    # using regex to find the values between quotes
+    try:
+        raw_match = re.search(r'"raw"\s*:\s*"(.*?)"\s*,\s*"formatted"', raw_response, re.DOTALL)
+        fmt_match = re.search(r'"formatted"\s*:\s*"(.*?)"\s*}', raw_response, re.DOTALL)
+
+        if raw_match and fmt_match:
+            raw_text = raw_match.group(1).replace('\\n', '\n').replace('\\"', '"')
+            fmt_text = fmt_match.group(1).replace('\\n', '\n').replace('\\"', '"')
+            return raw_text, fmt_text
+    except Exception:
+        pass
+
+    # If both fail — raise error so the week gets marked as failed
+    raise json.JSONDecodeError("Could not parse response", raw_response, 0)
 
 
 # -------------------------------------------------------
@@ -383,4 +383,4 @@ def generate_dataset(how_many=27):
 # Change how_many to however many new weeks you want
 # -------------------------------------------------------
 if __name__ == "__main__":
-    generate_dataset(how_many=1)
+    generate_dataset(how_many=9)

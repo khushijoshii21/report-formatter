@@ -1,1 +1,14 @@
-ok so this week was crazy... integration module got a bunch of love, fixed #jent-15202, also did #jent-14567 which was a chore, and then i worked on #jent-15000 which is a feat, auth module - updated some dependencies #jent-14900, also fixed this one bug #jent-14800, then there was react interview which i spent like 2 days on, did some enhancements #jent-14700, and fixed a bug #jent-14600, email service got some updates too #jent-15100, next week gonna tackle #jent-14400 and #jent-14300
+Email Service
+  feat: #jent-15038 added email templates
+  fix: #14798, 15058 fixed email sending issue
+  chore: updated dependencies
+  enhc: improved email rendering speed
+Live Interview
+  feat: #inte-1059 added screen sharing
+  fix: #jent-15202 fixed audio sync issue
+  update: improved interview UI
+Candidate Recommendation
+  feat: #14798, 15038, jent-15230 added new recommendation algorithm
+  fix: #15058 fixed candidate sorting issue
+  chore: updated database schema
+  enhc: improved recommendation speed

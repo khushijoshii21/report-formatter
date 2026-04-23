@@ -1,69 +1,93 @@
 [
   {
+    "file": "sample.txt",
+    "status": "success",
+    "quality_check": "passed",
+    "saved_to": "data/formatted/sample_report.txt",
+    "timestamp": "2026-04-23 10:31:53"
+  },
+  {
     "file": "test_empty.txt",
     "status": "skipped",
     "reason": "already formatted",
-    "timestamp": "2026-04-22 15:25:54"
+    "timestamp": "2026-04-23 10:31:53"
   },
   {
     "file": "test_gibberish.txt",
     "status": "skipped",
     "reason": "already formatted",
-    "timestamp": "2026-04-22 15:25:54"
+    "timestamp": "2026-04-23 10:31:53"
   },
   {
     "file": "test_nomodules.txt",
     "status": "skipped",
     "reason": "already formatted",
-    "timestamp": "2026-04-22 15:25:54"
+    "timestamp": "2026-04-23 10:31:53"
   },
   {
     "file": "test_short.txt",
     "status": "skipped",
     "reason": "already formatted",
-    "timestamp": "2026-04-22 15:25:54"
+    "timestamp": "2026-04-23 10:31:53"
   },
   {
     "file": "week1.txt",
     "status": "skipped",
     "reason": "already formatted",
-    "timestamp": "2026-04-22 15:25:54"
+    "timestamp": "2026-04-23 10:31:53"
   },
   {
     "file": "week2.txt",
     "status": "skipped",
     "reason": "already formatted",
-    "timestamp": "2026-04-22 15:25:54"
+    "timestamp": "2026-04-23 10:31:53"
   },
   {
     "file": "week3.txt",
     "status": "skipped",
     "reason": "already formatted",
-    "timestamp": "2026-04-22 15:25:54"
+    "timestamp": "2026-04-23 10:31:53"
   },
   {
     "file": "week4.txt",
     "status": "skipped",
     "reason": "already formatted",
-    "timestamp": "2026-04-22 15:25:54"
+    "timestamp": "2026-04-23 10:31:53"
   },
   {
     "file": "week5.txt",
     "status": "skipped",
     "reason": "already formatted",
-    "timestamp": "2026-04-22 15:25:54"
+    "timestamp": "2026-04-23 10:31:53"
   },
   {
     "file": "week6.txt",
     "status": "skipped",
     "reason": "already formatted",
-    "timestamp": "2026-04-22 15:25:54"
+    "timestamp": "2026-04-23 10:31:53"
   },
   {
     "file": "week7.txt",
-    "status": "success",
-    "quality_check": "passed",
-    "saved_to": "data/formatted/week7_report.txt",
-    "timestamp": "2026-04-22 15:25:57"
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 10:31:53"
+  },
+  {
+    "file": "week8.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 10:31:53"
+  },
+  {
+    "file": "week9.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 10:31:53"
+  },
+  {
+    "file": "week10.txt",
+    "status": "skipped",
+    "reason": "already formatted",
+    "timestamp": "2026-04-23 10:31:53"
   }
 ]
