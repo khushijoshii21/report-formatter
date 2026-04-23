@@ -1,0 +1,21 @@
+Mobile App
+  feat: #jent-15202 added new onboarding flow
+  fix: #14798, 15058 fixed video drop issue
+  enhc: improved loading speed
+  chore: updated dependencies
+Email Service
+  feat: #inte-1059 implemented email templates
+  fix: #15038 fixed email sender issue
+  chore: updated email library
+Notification Service
+  feat: #jent-15100 added new notification types
+  fix: #14888 fixed notification delay issue
+  enhc: improved notification delivery speed
+Payment Gateway
+  feat: #inte-1067 added new payment method
+  fix: #14954 fixed payment processing issue
+  chore: updated payment gateway API
+Authentication
+  feat: #jent-15038 added new authentication provider
+  fix: #14798 fixed authentication bug
+  enhc: improved authentication performance

@@ -104,3 +104,30 @@ any other provider by changing just a few lines of code.
 - Collect more weekly examples to grow the dataset
 - Fine tune a smaller model using the JSONL dataset
 - Build a simple web interface for non-technical users
+
+## Recent Updates
+
+### Configurable System
+The project is now fully configurable via config.json.
+Change model, API provider, team name, dates, and folder 
+paths without touching any code.
+
+### Improved Formatting
+The system prompt now handles:
+- Person-grouped reports (Arun, Sumit, Milind)
+- Module-grouped reports (React Interview, Live Interview)
+- Sub-headings as proper indented labels
+- Ticket IDs with # appearing only once
+- Automatic # added before inte- and jent- prefixes
+- No hallucinated content between sections
+
+### Edge Case Handling
+- Empty files — asks user to type notes
+- Too short input — asks user to add more details
+- Gibberish input — asks user to confirm or retype
+- Missing module names — asks user to provide them
+
+### Supported API Providers
+- Groq (free, default)
+- OpenAI
+- Gemini

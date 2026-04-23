@@ -1,0 +1,35 @@
+MMU, May 04, 2026 (Apr 27 - May 04)
+
+Key Updates
+
+    Sumit
+        - feat: #jent-15202 added new interview feature
+        - fix: #14798, 15058 fixed video drop issue
+        - chore: updated dependencies
+    Neha
+        - enhc: improved loading speed
+        - update: #inte- 1059, 1067 updated UI components
+        - bug: #jent-14954 fixed login bug
+    Milind
+        - feat: #jent-15100 added new dashboard
+        - fix: #14888 fixed audio sync issue
+        - chore: updated documentation
+    Prashant
+        - enhc: improved search performance
+        - update: #inte- 1060, 1061 updated backend APIs
+        - bug: #jent-14955 fixed UI rendering issue
+
+Key Achievements
+    - Added new interview feature
+    - Improved loading speed
+    - Added new dashboard
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - Review and test new features
+    - Fix pending bugs

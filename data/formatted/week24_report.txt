@@ -1,0 +1,30 @@
+MMU, Jun 20, 2026 (Jun 13 - Jun 20)
+
+Key Updates
+
+    Rahul
+        - feat: #jent-15202 added new reporting feature
+        - fix: #14798, 15058 fixed video drop issue
+        - chore: updated npm dependencies
+    Vikram
+        - enhc: improved search performance
+        - feat: #inte- 1059 implemented new login system
+        - update: #jent-14954, 14888 fixed audio sync issue
+    Sumit
+        - fix: #14850, 14900 fixed UI bugs
+        - feat: #jent-15100 added new dashboard
+        - chore: updated dependencies
+
+Key Achievements
+    - Added new reporting feature
+    - Improved search performance
+    - Implemented new login system
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - Implement new onboarding flow

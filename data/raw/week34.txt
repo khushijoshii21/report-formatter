@@ -1,0 +1,19 @@
+Rohit
+  feat: #jent-15100 added new dashboard
+  fix: #14798, 15058 fixed video drop issue
+  chore: updated dependencies
+Rahul
+  enhc: improved search performance
+  bug: #inte- 1059 fixed login bug
+  update: #jent-14954 updated user interface
+Neha
+  feat: #jent-15202 added screen sharing
+  fix: #14798, 15058 fixed audio sync issue
+  chore: updated documentation
+Prashant
+  enhc: #inte- 1067 improved loading speed
+  feat: #jent-15101 added new analytics
+  fix: #14799 fixed navigation issue
+Next Week Tasks
+  Complete integration with new API
+  Fix all high priority bugs

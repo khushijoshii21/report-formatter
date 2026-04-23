@@ -1,0 +1,21 @@
+Admin Dashboard
+  feat: #jent-15202 added new analytics page
+  fix: #14798, 15058 fixed dashboard loading issue
+  enhc: improved navigation menu
+  chore: updated dependencies
+Email Service
+  fix: #jent-15038 fixed email template issue
+  feat: #inte-1059 added new email notification
+  update: improved email delivery speed
+Notification Service
+  feat: #15062 added new notification type
+  fix: #14888 fixed notification delay issue
+  enhc: improved notification filtering
+Auto Job Apply Script
+  feat: #jent-15100 implemented cron-based scheduling
+  fix: #14954 fixed script error
+  chore: updated script dependencies
+Interview API
+  feat: #14799 added new interview question type
+  fix: #15058 fixed interview audio sync issue
+  enhc: improved interview video quality

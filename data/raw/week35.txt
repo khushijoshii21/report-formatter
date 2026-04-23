@@ -1,0 +1,21 @@
+Jobma Bot
+  feat: #jent-15038 added support for multiple intents
+  fix: #14798, 15058 fixed conversation flow issue
+  enhc: improved natural language processing
+  chore: updated dependencies
+Interview API
+  feat: #inte-1059 added real-time feedback
+  fix: #14888 fixed API rate limiting
+  update: improved error handling
+Live Interview
+  feat: #jent-15202 added screen sharing
+  fix: #15058 fixed video drop issue
+  enhc: improved video quality
+Authentication
+  feat: #inte-1067 implemented single sign-on
+  fix: #14798 fixed login bug
+  chore: updated authentication protocol
+Email Service
+  feat: #jent-15100 added email templating
+  fix: #15038 fixed email sending issue
+  enhc: improved email deliverability

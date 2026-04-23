@@ -1,0 +1,40 @@
+MMU, Oct 10, 2026 (Oct 3 - Oct 10)
+
+Key Updates
+
+    Sumit
+        - feat: #jent-15100 added new dashboard
+        - fix: #14798, 15058 fixed video drop issue
+        - chore: updated dependencies
+    Vikram
+        - enhc: improved search performance
+        - feat: #inte- 1059, 1067 added new filters
+        - bug: #jent-15202 fixed audio sync issue
+    Rohit
+        - update: #14798, 15058 updated API endpoints
+        - fix: #jent-14954 fixed login bug
+        - feat: #inte- 1087 added new UI components
+    Arun
+        Bug:
+            - #inte- 1059, 1067
+        ATS:
+            - Nexus ATS changes
+        - fix: #jent-15202 fixed issue
+    Prashant
+        - feat: #jent-15100 added new features
+        - enhc: improved loading speed
+        - chore: updated dependencies
+
+Key Achievements
+    - Implemented search functionality with new filters
+    - Added new dashboard for user analytics
+    - Fixed video drop issue and improved loading speed
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - Review code for Sumit and Vikram

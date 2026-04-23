@@ -1,0 +1,14 @@
+Integration
+  feat: #jent-15038 added support for new API
+  fix: #14798, 15058 fixed data sync issue
+  chore: updated dependencies
+  enhc: improved error handling
+Notification Service
+  update: #jent-15202 updated notification templates
+  feat: #inte-1059 implemented new notification channel
+  fix: #15088 fixed notification delay issue
+Admin Dashboard
+  feat: #jent-15100 added new dashboard widget
+  enhc: improved dashboard performance
+  chore: updated UI components
+  bug: #14798, 15058 fixed dashboard rendering issue

@@ -1,0 +1,16 @@
+Arun
+  feat: #inte- 1059 added new onboarding flow
+  fix: #jent- 14954 fixed login issue
+  chore: updated node version
+Neha
+  enhc: improved search performance
+  update: #14798, 15058 fixed video drop issue
+  feat: added screen sharing
+Pratik
+  bug: #jent- 15202 fixed audio sync issue
+  feat: #inte- 1067 added new dashboard
+  chore: updated dependencies
+Sumit
+  fix: #14798, 15058 fixed video drop issue
+  enhc: improved loading speed
+  feat: added new analytics dashboard

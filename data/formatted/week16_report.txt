@@ -1,0 +1,36 @@
+MMU, Apr 20, 2026 (Apr 13 - Apr 20)
+
+Key Updates
+
+    Pratik
+        - feat: #jent-15202 added new dashboard
+        - fix: #14798, 15058 fixed video drop issue
+        - update: improved loading speed
+    Rahul
+        - chore: updated dependencies
+        - enhc: #inte- 1059 improved search performance
+        - bug: #jent-14954 fixed audio sync issue
+    Prashant
+        - feat: added screen sharing
+        - fix: #14798, 15058 fixed login bug
+        - chore: updated documentation
+    Arun
+        Bug:
+            - #inte- 1059, 1067 fixed bug
+        ATS:
+            - Nexus ATS changes
+        chore: updated ATS dependencies
+
+Key Achievements
+    - Added new dashboard
+    - Improved search performance
+    - Fixed video drop issue
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - feat: implement new API

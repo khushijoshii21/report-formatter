@@ -1,0 +1,36 @@
+MMU, Aug 12, 2026 (Aug 05 - Aug 12)
+
+Key Updates
+
+    Milind
+        - feat: #jent-15202 added new feature
+        - fix: #14798, 15058 fixed video drop issue
+        - chore: updated dependencies
+    Neha
+        - enhc: #inte- 1059 improved loading speed
+        - feat: #jent-15100 added dashboard
+        - bug: #14888 fixed login bug
+    Prashant
+        - fix: #jent-15203 fixed audio sync issue
+        - update: #inte- 1067 updated cron job
+        - feat: #jent-15101 added new dashboard
+    Vikram
+        - feat: #jent-15204 added screen sharing
+        - fix: #14798, 15058 fixed video drop issue
+        - chore: updated dependencies
+
+Key Achievements
+    - Implemented new feature in Milind's module
+    - Improved loading speed in Neha's module
+    - Fixed audio sync issue in Prashant's module
+    - Added screen sharing in Vikram's module
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - work on #jent-15205
+    - implement #inte- 1068

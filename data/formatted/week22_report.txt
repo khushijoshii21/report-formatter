@@ -1,0 +1,46 @@
+MMU, May 31, 2026 (May 24 - May 31)
+
+Key Updates
+
+    Rohit
+        - feat: #jent-15202 added new interview feature
+        - chore: updated node dependencies
+        - fix: #14798, 15058 fixed video drop issue
+
+    Pratik
+        Bug:
+            - #inte- 1059, 1067 fixed analytics dashboard bugs
+        ATS:
+            - #jent-14954 fixed audio sync issue
+        Enhancements:
+            - enhc: improved loading speed
+
+    Vikram
+        Bug:
+            - #15060 fixed login bug
+        Features:
+            - feat: #14799 added screen sharing
+        Chores:
+            - chore: updated react dependencies
+
+    Rahul
+        Enhancements:
+            - enhc: improved search performance
+        Features:
+            - feat: #jent-15200 added new user onboarding
+        Fixes:
+            - fix: #inte- 1068, 1069 fixed UI issues
+
+Key Achievements
+    - Implemented new interview feature in Rohit's module
+    - Added new analytics dashboard in Pratik's module
+    - Improved search performance in Rahul's module
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - Review and test new features

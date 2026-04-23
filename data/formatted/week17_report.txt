@@ -1,0 +1,32 @@
+MMU, Apr 20, 2026 (Apr 13 - Apr 20)
+
+Key Updates
+
+    Live Interview
+        - feat: #jent-15202 added screen sharing
+        - fix: #14798, 15058 fixed video drop issue
+        - enhc: improved loading speed
+        - chore: updated dependencies
+    Candidate Recommendation
+        - feat: #inte- 1059 implemented new recommendation algorithm
+        - fix: #jent-15038 fixed candidate matching bug
+        - update: improved candidate profile display
+    Mobile App
+        - feat: #14798 added mobile notification
+        - fix: #jent-14954, 15058 fixed app crash issue
+        - enhc: improved app performance
+        - chore: updated app dependencies
+
+Key Achievements
+    - Implemented screen sharing in Live Interview module
+    - Improved candidate matching algorithm in Candidate Recommendation module
+    - Added mobile notification in Mobile App module
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - None

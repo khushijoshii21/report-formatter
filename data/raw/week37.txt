@@ -1,0 +1,19 @@
+Interview API
+  feat: #jent-15202 added support for multi-language interviews
+  fix: #14798, 15058 fixed video drop issue
+  chore: updated interview scheduling algorithm
+Search Engine
+  enhc: #inte-1059 improved search query performance
+  feat: jent-15038 added autocomplete feature
+  bug: #14888 fixed search result sorting issue
+Analytics Dashboard
+  update: #15062 updated dashboard layout
+  fix: #jent-14954 fixed data visualization bug
+  chore: updated dependencies
+Admin Dashboard
+  feat: #14798 added new user management feature
+  enhc: improved dashboard loading speed
+  chore: updated admin panel styling
+Next Week Tasks
+  finish implementing new interview API
+  optimize search engine performance

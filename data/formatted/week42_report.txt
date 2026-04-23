@@ -1,0 +1,38 @@
+MMU, Oct 20, 2026 (Oct 13 - Oct 20)
+
+Key Updates
+
+    Vikram
+        - feat: #jent-15202 added new login feature
+        - fix: #14798, 15058 fixed video drop issue
+        - chore: updated node modules
+
+    Sumit
+        - enhc: improved search performance
+        - update: #inte- 1059, 1067 updated search query
+        - feat: #jent-15100 added new dashboard
+
+    Prashant
+        - fix: #jent-14954 fixed audio sync issue
+        - chore: updated dependencies
+        - bug: #14799, 14800 fixed login bug
+
+    Pratik
+        - feat: #inte- 15201, 15203 added new interview feature
+        - enhc: improved loading speed
+        - update: #jent-15050, 15051 updated interview UI
+
+Key Achievements
+    - Implemented new login feature
+    - Improved search performance
+    - Added new interview feature
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - fix: #jent-15204, 15205
+    - feat: #inte- 15206

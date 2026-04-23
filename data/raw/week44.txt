@@ -1,0 +1,16 @@
+Pratik
+  feat: #jent-15202 added new onboarding feature
+  fix: #inte- 1059 fixed issue with login button
+  chore: updated Node.js to latest version
+Neha
+  enhc: #14798 improved search performance
+  bug: #jent-14954 fixed dropdown menu issue
+  update: refactored code for better readability
+Rahul
+  feat: #inte-1067 implemented new payment gateway
+  fix: #jent-15058 fixed bug with payment processing
+  chore: updated dependencies for security patches
+Sumit
+  enhc: improved loading speed of dashboard
+  update: #jent-15100 added new analytics feature
+  bug: #inte-1068 fixed issue with data visualization

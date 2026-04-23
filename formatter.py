@@ -165,6 +165,62 @@ def sort_key(filename):
 
 
 # -------------------------------------------------------
+# FUNCTION: extract_dates_from_file
+# Reads the top of a raw file and extracts date and
+# date range if they are written there.
+# Format expected at top of file:
+#   Date: Apr 20, 2026
+#   Range: Apr 13 – Apr 20
+# If not found, returns None and falls back to config.json
+# -------------------------------------------------------
+def extract_dates_from_file(raw_text):
+    report_date = None
+    date_range = None
+
+    lines = raw_text.strip().split("\n")
+
+    for line in lines[:5]:  # Only check first 5 lines
+        line = line.strip()
+
+        # Check for date line
+        if line.lower().startswith("date:"):
+            report_date = line.split(":", 1)[1].strip()
+
+        # Check for range line
+        elif line.lower().startswith("range:"):
+            date_range = line.split(":", 1)[1].strip()
+
+        # Stop looking once we hit actual content
+        elif line and not line.lower().startswith("date") and not line.lower().startswith("range"):
+            break
+
+    return report_date, date_range
+
+
+# -------------------------------------------------------
+# FUNCTION: strip_date_header
+# Removes the date header lines from raw text before
+# sending to AI — AI should not see the date header
+# as part of the raw notes
+# -------------------------------------------------------
+def strip_date_header(raw_text):
+    lines = raw_text.strip().split("\n")
+    cleaned = []
+    skip_blank = True
+
+    for line in lines:
+        stripped = line.strip().lower()
+        if stripped.startswith("date:") or stripped.startswith("range:"):
+            continue
+        else:
+            if skip_blank and not line.strip():
+                continue
+            skip_blank = False
+            cleaned.append(line)
+
+    return "\n".join(cleaned)
+
+# -------------------------------------------------------
 # EDGE CASE CHECKS
 # -------------------------------------------------------
 def is_too_short(text):
@@ -499,6 +555,19 @@ def process_all_files():
         with open(file_path, "r") as f:
             raw_text = f.read()
 
+        # Try to extract dates from top of file
+        file_date, file_range = extract_dates_from_file(raw_text)
+
+        # Use file dates if found, otherwise use config/confirmed dates
+        current_date = file_date if file_date else report_date
+        current_range = file_range if file_range else date_range
+
+        if file_date:
+            print(f"  Date found in file: {current_date} ({current_range})")
+
+        # Strip date header from raw text before sending to AI
+        raw_text = strip_date_header(raw_text)
+
         # Validate input
         issues = validate_input(raw_text)
 
@@ -530,7 +599,7 @@ def process_all_files():
             metadata_confirmed = True
 
         # Format the report
-        formatted = format_report(raw_text, team_name, report_date, date_range)
+        formatted = format_report(raw_text, team_name, current_date, current_range)
 
         # Fix ticket ID formatting
         formatted = fix_ticket_ids(formatted)
@@ -546,7 +615,7 @@ def process_all_files():
             choice = input().strip()
             if choice == "1":
                 print("  Retrying...")
-                formatted = format_report(raw_text, team_name, report_date, date_range)
+                formatted = format_report(raw_text, team_name, current_date, current_range)
                 formatted = fix_ticket_ids(formatted)
                 passed = check_quality(formatted)
             else:

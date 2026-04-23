@@ -1,0 +1,16 @@
+Rohit
+  feat: #jent-15202 added new interview feature
+  chore: updated node dependencies
+  fix: #14798, 15058 fixed video drop issue
+Pratik
+  enhc: improved loading speed
+  feat: #inte- 1059, 1067 added new analytics dashboard
+  fix: #jent-14954 fixed audio sync issue
+Vikram
+  feat: #14799 added screen sharing
+  chore: updated react dependencies
+  bug: #15060 fixed login bug
+Rahul
+  enhc: improved search performance
+  feat: #jent-15200 added new user onboarding
+  fix: #inte- 1068, 1069 fixed UI issues

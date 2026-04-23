@@ -1,0 +1,20 @@
+Pratik
+  feat: #jent-15202 added new dashboard
+  fix: #14798, 15058 fixed video drop issue
+  update: improved loading speed
+Rahul
+  chore: updated dependencies
+  enhc: #inte- 1059 improved search performance
+  bug: #jent-14954 fixed audio sync issue
+Prashant
+  feat: added screen sharing
+  fix: #14798, 15058 fixed login bug
+  chore: updated documentation
+Arun
+  Bug:
+    #inte- 1059, 1067 fixed bug
+  ATS:
+    - Nexus ATS changes
+  chore: updated ATS dependencies
+Next Week Tasks
+  feat: implement new API

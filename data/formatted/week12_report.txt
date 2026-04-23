@@ -1,0 +1,34 @@
+MMU, Apr 20, 2026 (Apr 13 - Apr 20)
+
+Key Updates
+
+    Prashant
+        - feat: #jent-15202 added new login feature
+        - fix: #14798, 15058 fixed video drop issue
+        - enhc: improved search performance
+    Rohit
+        - chore: updated dependencies
+        - fix: #inte- 1059 fixed audio sync issue
+        - update: #jent-14954 updated dashboard
+    Sumit
+        - feat: #inte- 1067 added screen sharing
+        - bug: #14799 fixed login bug
+        - enhc: improved loading speed
+    Milind
+        - feat: #jent-15100 added new dashboard
+        - fix: #14888, 14900 fixed UI issues
+        - chore: updated documentation
+
+Key Achievements
+    - Implemented new login feature using #jent-15202
+    - Added screen sharing functionality using #inte- 1067
+    - Improved search performance by 30%
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - Implement new UI changes for dashboard

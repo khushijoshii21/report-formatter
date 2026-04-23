@@ -1,0 +1,38 @@
+MMU, Jun 13, 2026 (Jun 06 - Jun 13)
+
+Key Updates
+
+    Live Interview
+        - feat: #jent-15202 added screen sharing
+        - fix: #14798, 15058 fixed video drop issue
+        - chore: updated npm dependencies
+    Email Service
+        - enhc: #inte-1059 improved email delivery speed
+        - update: #jent-15038 updated email templates
+        - bug: #14888 fixed email parsing issue
+    Analytics Dashboard
+        - feat: #jent-15100 added new dashboard view
+        - fix: #15060 fixed chart rendering issue
+        - enhc: improved data loading performance
+    Candidate Recommendation
+        - feat: #jent-14954 added AI-based candidate matching
+        - update: #inte-1067 updated recommendation algorithm
+        - chore: refactored code for better readability
+    Interview API
+        - fix: #14798, 15058 fixed API request latency
+        - enhc: improved error handling and logging
+        - feat: #jent-15202 added support for WebSocket protocol
+
+Key Achievements
+    - Implemented AI-based candidate matching in Candidate Recommendation
+    - Added new dashboard view in Analytics Dashboard
+    - Improved email delivery speed in Email Service
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - None

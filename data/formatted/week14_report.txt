@@ -1,0 +1,32 @@
+MMU, Apr 13, 2026 (Apr 6 - Apr 13)
+
+Key Updates
+
+    Prashant
+        - feat: #jent-15100 added new dashboard
+        - enhc: improved search performance
+        - chore: updated dependencies
+    Arun
+        - fix: #inte- 1059, 1067 fixed bug in login
+        - feat: #jent-14954 implemented UI changes
+        - update: #14798, 14888 updated database schema
+    Rahul
+        - bug: #jent-15202 fixed audio sync issue
+        - feat: added screen sharing
+        - chore: updated documentation
+
+Key Achievements
+    - Implemented new dashboard feature for Prashant
+    - Fixed bug in login for Arun
+    - Added screen sharing feature for Rahul
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - Review code for Prashant's dashboard feature
+    - Test Arun's login bug fix
+    - Implement new dashboard for Rahul

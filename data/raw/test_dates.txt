@@ -1,0 +1,10 @@
+Date: Apr 27, 2026
+Range: Apr 20 – Apr 27
+
+React Interview
+  fix: #jent-15300 fixed login timeout issue
+  enhc: improved interview loading speed
+
+Live Interview
+  feat: added screen sharing support
+  fix: #jent-15301 fixed audio drop on mobile

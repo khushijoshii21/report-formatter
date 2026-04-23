@@ -1,0 +1,45 @@
+MMU, Jul 04, 2026 (Jun 27 - Jul 04)
+
+Key Updates
+
+    Mobile App
+        - feat: #jent-15202 added new onboarding flow
+        - fix: #14798, 15058 fixed video drop issue
+        - enhc: improved loading speed
+        - chore: updated dependencies
+
+    Email Service
+        - feat: #inte-1059 implemented email templates
+        - fix: #jent-15038 fixed email sender issue
+        - chore: updated email library
+
+    Notification Service
+        - feat: #jent-15100 added new notification types
+        - fix: #14888 fixed notification delay issue
+        - enhc: improved notification delivery speed
+
+    Payment Gateway
+        - feat: #inte-1067 added new payment method
+        - fix: #14954 fixed payment processing issue
+        - chore: updated payment gateway API
+
+    Authentication
+        - feat: #jent-15038 added new authentication provider
+        - fix: #14798 fixed authentication bug
+        - enhc: improved authentication performance
+
+Key Achievements
+    - Added new onboarding flow in Mobile App
+    - Implemented email templates in Email Service
+    - Added new notification types in Notification Service
+    - Added new payment method in Payment Gateway
+    - Added new authentication provider in Authentication
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - None

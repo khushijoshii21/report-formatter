@@ -1,0 +1,19 @@
+Milind
+  feat: #jent-15202 added new feature
+  fix: #14798, 15058 fixed video drop issue
+  chore: updated dependencies
+Neha
+  enhc: #inte- 1059 improved loading speed
+  feat: #jent-15100 added dashboard
+  bug: #14888 fixed login bug
+Prashant
+  fix: #jent-15203 fixed audio sync issue
+  update: #inte- 1067 updated cron job
+  feat: #jent-15101 added new dashboard
+Vikram
+  feat: #jent-15204 added screen sharing
+  fix: #14798, 15058 fixed video drop issue
+  chore: updated dependencies
+Next Week Tasks
+  work on #jent-15205
+  implement #inte- 1068

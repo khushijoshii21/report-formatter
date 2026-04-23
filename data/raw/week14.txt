@@ -1,0 +1,16 @@
+Prashant
+  feat: #jent-15100 added new dashboard
+  enhc: improved search performance
+  chore: updated dependencies
+Arun
+  fix: #inte- 1059, 1067 fixed bug in login
+  feat: #jent-14954 implemented UI changes
+  update: #14798, 14888 updated database schema
+Rahul
+  bug: #jent-15202 fixed audio sync issue
+  feat: added screen sharing
+  chore: updated documentation
+Next Week Tasks
+  Review code for Prashant's dashboard feature
+  Test Arun's login bug fix
+  Implement new dashboard for Rahul

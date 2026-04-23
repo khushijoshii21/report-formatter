@@ -1,0 +1,37 @@
+MMU, Oct 25, 2026 (Oct 18 - Oct 25)
+
+Key Updates
+
+    Mobile App
+        - fix: #14798 fixed login bug
+        - feat: #jent-15038 added new profile section
+        - enhc: improved search performance
+        - chore: updated dependencies
+    Email Service
+        - fix: #15058 fixed email sending issue
+        - update: #jent-15100 updated email template
+        - chore: cleaned up code
+    Jobma Bot
+        - feat: #inte-1059 added new conversation flow
+        - fix: #jent-15202 fixed audio sync issue
+        - enhc: improved response time
+    Candidate Recommendation
+        - feat: #14799 added new filtering options
+        - enhc: improved recommendation accuracy
+        - chore: updated dependencies
+
+Key Achievements
+    - Added new profile section in Mobile App
+    - Improved email sending issue in Email Service
+    - Added new conversation flow in Jobma Bot
+    - Improved recommendation accuracy in Candidate Recommendation
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - Implement new search algorithm in Mobile App
+    - Fix email delivery issues in Email Service

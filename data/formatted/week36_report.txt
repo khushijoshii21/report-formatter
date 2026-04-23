@@ -1,0 +1,36 @@
+MMU, Sep 18, 2026 (Sep 11 - Sep 18)
+
+Key Updates
+
+    Prashant
+        - feat: #jent-15202 added new dashboard
+        - fix: #14798, 15058 fixed video drop issue
+        - chore: updated dependencies
+    Arun
+        Bug:
+            - fix: #inte- 1059, 1067 fixed bug in login
+        ATS:
+            - enhc: improved search performance in Nexus ATS
+            - chore: #jent-14954 updated cron jobs
+    Amit
+        - feat: #inte-1078 implemented new UI in Analytics Dashboard
+        - fix: #jent-15100, 15101 fixed bug in Auto Job Apply Script
+        - enhc: improved loading speed in Candidate Search
+    Neha
+        - chore: updated documentation
+        - fix: #14798, 14888 fixed issue in Interview Scheduler
+        - feat: #jent-15203 added new feature in React Interview
+
+Key Achievements
+    - Implemented new UI in Analytics Dashboard using #inte-1078
+    - Improved search performance in Nexus ATS
+    - Added new feature in React Interview using #jent-15203
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - None

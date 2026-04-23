@@ -1,0 +1,42 @@
+MMU, May 11, 2026 (May 04 - May 11)
+
+Key Updates
+
+    Email Service
+        - feat: #jent-15202 added email validation
+        - fix: #14798, 15058 fixed email template issue
+        - chore: updated dependencies
+        - enhc: improved email sending speed
+    Interview API
+        - feat: #jent-15100 added interview scheduling
+        - fix: #jent-15038 fixed API endpoint
+        - update: #14888 updated API documentation
+    Search Engine
+        - feat: #inte-14954 added search suggestions
+        - enhc: improved search performance
+        - bug: #14798 fixed search query issue
+    Authentication
+        - feat: #jent-15038 added two-factor authentication
+        - fix: #15058 fixed login bug
+        - chore: updated authentication library
+    Jobma Bot
+        - feat: #jent-15202 added bot conversation flow
+        - enhc: improved bot response time
+        - fix: #14798, 15058 fixed bot conversation issue
+
+Key Achievements
+    - Implemented email validation in Email Service
+    - Added interview scheduling in Interview API
+    - Improved search performance in Search Engine
+    - Added two-factor authentication in Authentication
+    - Added bot conversation flow in Jobma Bot
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - Implement cron-based scheduling in Auto Job Apply Script
+    - Integrate Search Engine with Interview API

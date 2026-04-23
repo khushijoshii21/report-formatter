@@ -1,0 +1,44 @@
+MMU, Aug 27, 2026 (Aug 20 - Aug 27)
+
+Key Updates
+
+    Rohit
+        - feat: #jent-15100 added new dashboard
+        - fix: #14798, 15058 fixed video drop issue
+        - chore: updated dependencies
+    Rahul
+        Bug:
+            - fix: #inte- 1059 fixed login bug
+        ATS:
+            - update: #jent-14954 updated user interface
+        Performance:
+            - enhc: improved search performance
+    Neha
+        Feature:
+            - feat: #jent-15202 added screen sharing
+        Bug:
+            - fix: #14798, 15058 fixed audio sync issue
+        Documentation:
+            - chore: updated documentation
+    Prashant
+        Enhancement:
+            - enhc: #inte- 1067 improved loading speed
+        Feature:
+            - feat: #jent-15101 added new analytics
+        Bug:
+            - fix: #14799 fixed navigation issue
+
+Key Achievements
+    - Implemented new dashboard with feature #jent-15100
+    - Improved search performance
+    - Added screen sharing with feature #jent-15202
+
+Challenges Encountered
+    - None
+
+Team Challenges
+    - None
+
+Key Tasks Scheduled for Next Week
+    - Complete integration with new API
+    - Fix all high priority bugs

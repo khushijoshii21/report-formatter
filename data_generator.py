@@ -383,4 +383,4 @@ def generate_dataset(how_many=27):
 # Change how_many to however many new weeks you want
 # -------------------------------------------------------
 if __name__ == "__main__":
-    generate_dataset(how_many=9)
+    generate_dataset(how_many=6)
