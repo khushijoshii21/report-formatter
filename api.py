@@ -4,6 +4,8 @@ import json
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from typing import Optional
 
@@ -11,7 +13,7 @@ load_dotenv()
 
 
 # -------------------------------------------------------
-# CONFIGURATION — reads from config.json
+# CONFIGURATION
 # -------------------------------------------------------
 def load_config():
     config_path = "config.json"
@@ -24,7 +26,7 @@ config = load_config()
 
 
 # -------------------------------------------------------
-# API CLIENT SETUP — same as formatter.py
+# API CLIENT SETUP
 # -------------------------------------------------------
 def setup_client():
     provider = config["api_provider"].lower()
@@ -45,7 +47,7 @@ client, provider = setup_client()
 
 
 # -------------------------------------------------------
-# SYSTEM PROMPT — same as formatter.py
+# SYSTEM PROMPT
 # -------------------------------------------------------
 SYSTEM_PROMPT = """
 You are a weekly engineering report formatter.
@@ -132,7 +134,6 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Allow requests from any origin (needed for web clients)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -143,7 +144,6 @@ app.add_middleware(
 
 # -------------------------------------------------------
 # REQUEST AND RESPONSE MODELS
-# These define what the API accepts and returns
 # -------------------------------------------------------
 class FormatRequest(BaseModel):
     raw_text: str
@@ -161,9 +161,90 @@ class FormatResponse(BaseModel):
     quality_check: bool
     missing_sections: list
 
+class BatchRequest(BaseModel):
+    reports: list
+    team_name: Optional[str] = None
+    report_date: Optional[str] = None
+    date_range: Optional[str] = None
+
 
 # -------------------------------------------------------
-# HELPER: fix_ticket_ids — same as formatter.py
+# EDGE CASE DETECTION FUNCTIONS
+# Each function checks one specific problem
+# Returns True if problem is detected
+# -------------------------------------------------------
+
+def is_empty(text):
+    """Check if input is empty or only whitespace"""
+    return not text or not text.strip()
+
+def is_gibberish(text):
+    """
+    Check if input is mostly symbols/special characters
+    If less than 60% of non-space characters are letters = gibberish
+    Example: @@### $$$ !!! %%% *** → gibberish
+    """
+    letters = sum(c.isalpha() for c in text)
+    total = len(text.replace(" ", "").replace("\n", ""))
+    if total == 0:
+        return True
+    return (letters / total) < 0.6
+
+def is_too_short(text):
+    """
+    Check if input has less than 10 words
+    Example: "fixed a bug" → too short
+    """
+    words = text.split()
+    return len(words) < 10
+
+def has_no_modules(text):
+    """
+    Check if input has no recognizable engineering keywords
+    If less than 2 keywords found = no modules detected
+    """
+    common_keywords = [
+        "interview", "integration", "api", "bot", "script",
+        "dashboard", "app", "service", "fix", "feat", "enhc",
+        "chore", "update", "bug", "frontend", "backend", "mobile",
+        "react", "live", "candidate", "jobma", "auto", "admin",
+        "payment", "notification", "auth", "search", "analytics",
+        "email", "jent", "#"
+    ]
+    text_lower = text.lower()
+    matches = sum(1 for keyword in common_keywords if keyword in text_lower)
+    return matches < 2
+
+
+# -------------------------------------------------------
+# VALIDATE INPUT
+# Runs all edge case checks in the correct order
+# Returns error message if problem found, None if clean
+# Order matters:
+# 1. Empty first — no point checking further if empty
+# 2. Gibberish second — before short check so @@### $$$
+#    gets caught as gibberish not "too short"
+# 3. Too short third
+# 4. No modules last
+# -------------------------------------------------------
+def validate_input(text):
+    if is_empty(text):
+        return "Input is empty — please paste your raw notes."
+
+    if is_gibberish(text):
+        return "Input appears to contain mostly symbols or special characters. Please paste proper engineering notes."
+
+    if is_too_short(text):
+        return "Input is too short — please provide more details about what was done this week."
+
+    if has_no_modules(text):
+        return "Could not detect any module or project names in your notes. Please make sure your input contains proper engineering updates."
+
+    return None  # No issues found
+
+
+# -------------------------------------------------------
+# HELPER: fix_ticket_ids
 # -------------------------------------------------------
 def fix_ticket_ids(text):
     lines = text.split("\n")
@@ -185,7 +266,7 @@ def fix_ticket_ids(text):
 
 
 # -------------------------------------------------------
-# HELPER: check_quality — same as formatter.py
+# HELPER: check_quality
 # -------------------------------------------------------
 def check_quality(formatted_text):
     required_sections = [
@@ -200,7 +281,7 @@ def check_quality(formatted_text):
 
 
 # -------------------------------------------------------
-# HELPER: call_ai — sends text to configured AI
+# HELPER: call_ai
 # -------------------------------------------------------
 def call_ai(raw_text, team_name, report_date, date_range):
     user_message = f"""
@@ -237,27 +318,32 @@ Raw updates to format:
 
 
 # -------------------------------------------------------
-# ROUTE 1: GET /
-# Simple welcome message to confirm API is running
+# ROUTES
 # -------------------------------------------------------
+
 @app.get("/")
 def root():
     return {
         "message": "Report Formatter API is running",
         "version": "1.0.0",
         "endpoints": {
+            "ui": "GET /ui",
             "format_report": "POST /format-report",
+            "batch": "POST /format-report/batch",
             "health": "GET /health",
             "config": "GET /config",
+            "reload_config": "POST /reload-config",
             "docs": "GET /docs"
         }
     }
 
 
-# -------------------------------------------------------
-# ROUTE 2: GET /health
-# Health check — tells you if API is working
-# -------------------------------------------------------
+@app.get("/ui", response_class=HTMLResponse)
+def ui():
+    with open("templates/index.html", "r") as f:
+        return f.read()
+
+
 @app.get("/health")
 def health_check():
     return {
@@ -268,10 +354,6 @@ def health_check():
     }
 
 
-# -------------------------------------------------------
-# ROUTE 3: GET /config
-# Returns current configuration (without API keys)
-# -------------------------------------------------------
 @app.get("/config")
 def get_config():
     return {
@@ -285,41 +367,43 @@ def get_config():
     }
 
 
-# -------------------------------------------------------
-# ROUTE 4: POST /format-report
-# Main endpoint — takes raw notes and returns formatted report
-# This is the core of the entire API
-# -------------------------------------------------------
+@app.post("/reload-config")
+def reload_config():
+    global config, client, provider
+    try:
+        config = load_config()
+        client, provider = setup_client()
+        return {
+            "message": "Configuration reloaded successfully",
+            "api_provider": config["api_provider"],
+            "model": config["model"],
+            "team_name": config["team_name"],
+            "report_date": config["report_date"],
+            "date_range": config["date_range"]
+        }
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to reload config: {str(e)}"
+        )
+
+
 @app.post("/format-report", response_model=FormatResponse)
 def format_report(request: FormatRequest):
 
-    # Validate input is not empty
-    if not request.raw_text or not request.raw_text.strip():
-        raise HTTPException(
-            status_code=400,
-            detail="raw_text cannot be empty"
-        )
+    # Run all edge case checks in correct order
+    error = validate_input(request.raw_text)
+    if error:
+        raise HTTPException(status_code=400, detail=error)
 
-    # Validate input is not too short
-    if len(request.raw_text.split()) < 5:
-        raise HTTPException(
-            status_code=400,
-            detail="raw_text is too short — please provide more details"
-        )
-
-    # Use values from request if provided, otherwise fall back to config
+    # Use values from request or fall back to config
     team_name = request.team_name or config["team_name"]
     report_date = request.report_date or config["report_date"]
     date_range = request.date_range or config["date_range"]
 
     try:
-        # Call AI to format the report
         formatted = call_ai(request.raw_text, team_name, report_date, date_range)
-
-        # Fix ticket ID formatting
         formatted = fix_ticket_ids(formatted)
-
-        # Check quality
         passed, missing = check_quality(formatted)
 
         return FormatResponse(
@@ -340,24 +424,13 @@ def format_report(request: FormatRequest):
         )
 
 
-# -------------------------------------------------------
-# ROUTE 5: POST /format-report/batch
-# Formats multiple reports at once
-# Send a list of raw texts and get back all formatted
-# -------------------------------------------------------
-class BatchRequest(BaseModel):
-    reports: list
-    team_name: Optional[str] = None
-    report_date: Optional[str] = None
-    date_range: Optional[str] = None
-
 @app.post("/format-report/batch")
 def format_batch(request: BatchRequest):
 
     if not request.reports:
         raise HTTPException(
             status_code=400,
-            detail="reports list cannot be empty"
+            detail="Reports list cannot be empty"
         )
 
     if len(request.reports) > 10:
@@ -373,6 +446,17 @@ def format_batch(request: BatchRequest):
     results = []
 
     for i, raw_text in enumerate(request.reports):
+
+        # Validate each report individually
+        error = validate_input(raw_text)
+        if error:
+            results.append({
+                "index": i,
+                "status": "error",
+                "error": error
+            })
+            continue
+
         try:
             formatted = call_ai(raw_text, team_name, report_date, date_range)
             formatted = fix_ticket_ids(formatted)

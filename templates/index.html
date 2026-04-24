@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Formatter</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+        }
+
+        /* TOP NAV */
+        .navbar {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 0 32px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo {
+            width: 32px;
+            height: 32px;
+            background: #4f46e5;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .nav-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .config-pill {
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 12px;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .config-pill .dot {
+            width: 6px;
+            height: 6px;
+            background: #10b981;
+            border-radius: 50%;
+        }
+
+        .btn-reload {
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 12px;
+            color: #555;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-reload:hover {
+            background: #4f46e5;
+            color: white;
+            border-color: #4f46e5;
+        }
+
+        .btn-reload.loading {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* MAIN LAYOUT */
+        .main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            height: calc(100vh - 60px);
+        }
+
+        /* LEFT PANEL */
+        .left-panel {
+            background: white;
+            border-right: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            padding: 20px 24px 16px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .panel-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #111;
+            margin-bottom: 4px;
+        }
+
+        .panel-subtitle {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .fields-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            padding: 16px 24px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .field-label {
+            font-size: 11px;
+            font-weight: 500;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .field-input {
+            padding: 7px 10px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #111;
+            outline: none;
+            background: #fafafa;
+            transition: all 0.15s;
+        }
+
+        .field-input:focus {
+            border-color: #4f46e5;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.08);
+        }
+
+        .textarea-wrap {
+            flex: 1;
+            padding: 16px 24px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .raw-textarea {
+            flex: 1;
+            width: 100%;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 14px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.7;
+            color: #1a1a1a;
+            resize: none;
+            outline: none;
+            background: #fafafa;
+            transition: all 0.15s;
+        }
+
+        .raw-textarea:focus {
+            border-color: #4f46e5;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.08);
+        }
+
+        .actions-row {
+            padding: 14px 24px;
+            border-top: 1px solid #f3f4f6;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-format {
+            background: #4f46e5;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-format:hover { background: #4338ca; }
+        .btn-format:disabled { background: #a5b4fc; cursor: not-allowed; }
+
+        .btn-clear {
+            background: transparent;
+            color: #6b7280;
+            border: 1px solid #e5e7eb;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .btn-clear:hover { background: #f9fafb; color: #111; }
+
+        .error-banner {
+            margin: 0 24px 14px;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #dc2626;
+            font-size: 13px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .error-banner::before {
+            content: "⚠";
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* RIGHT PANEL */
+        .right-panel {
+            background: #fafafa;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .output-header {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 20px 24px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .output-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #111;
+        }
+
+        .output-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-copy {
+            display: none;
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 7px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .btn-copy:hover { background: #059669; }
+
+        .status-pills {
+            display: none;
+            gap: 6px;
+        }
+
+        .pill {
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .pill-green { background: #d1fae5; color: #065f46; }
+        .pill-red { background: #fee2e2; color: #991b1b; }
+        .pill-blue { background: #dbeafe; color: #1e40af; }
+        .pill-gray { background: #f3f4f6; color: #374151; }
+
+        .output-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        /* EMPTY STATE */
+        .empty-state {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            gap: 12px;
+        }
+
+        .empty-icon {
+            width: 48px;
+            height: 48px;
+            background: #f3f4f6;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .empty-text {
+            font-size: 14px;
+            color: #9ca3af;
+        }
+
+        /* LOADING STATE */
+        .loading-state {
+            display: none;
+            height: 100%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            color: #6b7280;
+        }
+
+        .loading-spinner {
+            width: 36px;
+            height: 36px;
+            border: 3px solid #e5e7eb;
+            border-top-color: #4f46e5;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .loading-text {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        /* FORMATTED REPORT OUTPUT */
+        .report-output {
+            display: none;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 24px 28px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            line-height: 1.9;
+            color: #1a1a1a;
+            min-height: 200px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="nav-left">
+        <div class="nav-logo">RF</div>
+        <span class="nav-title">Report Formatter</span>
+    </div>
+    <div class="nav-right" id="navConfig">
+        <div class="config-pill">
+            <span class="dot"></span>
+            <span id="providerTag">Loading...</span>
+        </div>
+        <div class="config-pill" id="modelTag">—</div>
+        <div class="config-pill" id="teamTag">—</div>
+        <button class="btn-reload" id="reloadBtn" onclick="reloadConfig()" title="Reload config.json">
+            ↺ Reload Config
+        </button>
+    </div>
+</nav>
+
+<!-- MAIN -->
+<div class="main">
+
+    <!-- LEFT — INPUT -->
+    <div class="left-panel">
+        <div class="panel-header">
+            <div class="panel-title">Raw Notes</div>
+            <div class="panel-subtitle">Paste your weekly engineering notes below</div>
+        </div>
+
+        <div class="fields-row">
+            <div class="field-group">
+                <label class="field-label">Team Name</label>
+                <input class="field-input" id="teamName" type="text" placeholder="MMU" />
+            </div>
+            <div class="field-group">
+                <label class="field-label">Report Date</label>
+                <input class="field-input" id="reportDate" type="text" placeholder="Apr 24, 2026" />
+            </div>
+            <div class="field-group">
+                <label class="field-label">Date Range</label>
+                <input class="field-input" id="dateRange" type="text" placeholder="Apr 13 – Apr 20" />
+            </div>
+        </div>
+
+        <div class="textarea-wrap">
+            <textarea
+                class="raw-textarea"
+                id="rawInput"
+                placeholder="Paste your raw engineering notes here...
+
+Example:
+React Interview
+  fix: #jent-15202 fixed login timeout issue
+  enhc: improved interview loading speed
+
+Live Interview
+  feat: added screen sharing support
+  fix: #jent-15301 fixed audio drop on mobile
+
+Next Week:
+  feat: add dark mode support
+  fix: mobile layout issues"
+            ></textarea>
+        </div>
+
+        <div class="actions-row">
+            <button class="btn-format" id="formatBtn" onclick="formatReport()">
+                Format Report
+            </button>
+            <button class="btn-clear" onclick="clearAll()">Clear</button>
+        </div>
+        <div class="error-banner" id="errorMsg" style="display:none"></div>
+    </div>
+
+    <!-- RIGHT — OUTPUT -->
+    <div class="right-panel">
+        <div class="output-header">
+            <div class="output-title">Formatted Report</div>
+            <div class="output-actions">
+                <div class="status-pills" id="statusPills">
+                    <span class="pill pill-gray" id="qualityPill">—</span>
+                    <span class="pill pill-blue" id="modelPill">—</span>
+                </div>
+                <button class="btn-copy" id="copyBtn" onclick="copyReport()">
+                    Copy Report
+                </button>
+            </div>
+        </div>
+
+        <div class="output-body">
+
+            <!-- Empty state -->
+            <div class="empty-state" id="emptyState">
+                <div class="empty-icon">📋</div>
+                <div class="empty-text">Your formatted report will appear here</div>
+            </div>
+
+            <!-- Loading state -->
+            <div class="loading-state" id="loadingState">
+                <div class="loading-spinner"></div>
+                <div class="loading-text">Formatting your report...</div>
+            </div>
+
+            <!-- Report output -->
+            <div class="report-output" id="reportOutput"></div>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const API = "http://127.0.0.1:8000";
+
+    async function reloadConfig() {
+        const btn = document.getElementById("reloadBtn");
+        btn.textContent = "↺ Reloading...";
+        btn.classList.add("loading");
+        btn.disabled = true;
+
+        try {
+            const res = await fetch(`${API}/reload-config`, { method: "POST" });
+            const data = await res.json();
+
+            if (res.ok) {
+                // Update navbar tags
+                document.getElementById("providerTag").textContent = data.api_provider.toUpperCase();
+                document.getElementById("modelTag").textContent = data.model;
+                document.getElementById("teamTag").textContent = data.team_name;
+
+                // Update placeholder text in input fields
+                document.getElementById("teamName").placeholder = data.team_name;
+                document.getElementById("reportDate").placeholder = data.report_date;
+                document.getElementById("dateRange").placeholder = data.date_range;
+
+                btn.textContent = "✓ Reloaded";
+                btn.style.background = "#10b981";
+                btn.style.color = "white";
+                btn.style.borderColor = "#10b981";
+
+                setTimeout(() => {
+                    btn.textContent = "↺ Reload Config";
+                    btn.style.background = "";
+                    btn.style.color = "";
+                    btn.style.borderColor = "";
+                }, 2000);
+            } else {
+                btn.textContent = "✗ Failed";
+                btn.style.background = "#dc2626";
+                btn.style.color = "white";
+                setTimeout(() => {
+                    btn.textContent = "↺ Reload Config";
+                    btn.style.background = "";
+                    btn.style.color = "";
+                }, 2000);
+            }
+        } catch {
+            btn.textContent = "✗ API Offline";
+            setTimeout(() => { btn.textContent = "↺ Reload Config"; }, 2000);
+        } finally {
+            btn.classList.remove("loading");
+            btn.disabled = false;
+        }
+    }
+
+    // Load config on startup
+    async function loadConfig() {
+        try {
+            const res = await fetch(`${API}/config`);
+            const data = await res.json();
+            document.getElementById("providerTag").textContent = data.api_provider.toUpperCase();
+            document.getElementById("modelTag").textContent = data.model;
+            document.getElementById("teamTag").textContent = data.team_name;
+            document.getElementById("teamName").placeholder = data.team_name;
+            document.getElementById("reportDate").placeholder = data.report_date;
+            document.getElementById("dateRange").placeholder = data.date_range;
+        } catch {
+            document.getElementById("providerTag").textContent = "API Offline";
+        }
+    }
+
+    function formatWithIndent(text) {
+        const lines = text.split("\n");
+        const result = lines.map(line => {
+
+            // Empty line — add spacing
+            if (!line.trim()) {
+                return "<div style='height: 8px'></div>";
+            }
+
+            // Count leading spaces to determine indentation level
+            const spaces = line.match(/^(\s*)/)[1].length;
+            const content = line.trimStart();
+
+            // Escape HTML
+            const escaped = content
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+
+            // Detect line type based on content and indentation
+            const isReportHeader = spaces === 0 && !content.startsWith("-") && !content.startsWith("Key");
+            const isMainSection = spaces === 0 && (
+                content.startsWith("Key Updates") ||
+                content.startsWith("Key Achievements") ||
+                content.startsWith("Challenges Encountered") ||
+                content.startsWith("Team Challenges") ||
+                content.startsWith("Key Tasks")
+            );
+            const isModuleOrPerson = spaces >= 2 && spaces <= 6 && !content.startsWith("-");
+            const isSubHeading = spaces >= 6 && spaces <= 10 && !content.startsWith("-");
+            const isBullet = content.startsWith("-");
+
+            // Style based on type
+            if (isReportHeader) {
+                // MMU, Apr 20, 2026 — bold large header
+                return `<div style="
+                    font-weight: 700;
+                    font-size: 14px;
+                    color: #111;
+                    margin-bottom: 4px;
+                    padding-left: ${spaces * 8}px;
+                ">${escaped}</div>`;
+            }
+
+            if (isMainSection) {
+                // Key Updates, Key Achievements etc — bold section headers
+                return `<div style="
+                    font-weight: 700;
+                    font-size: 13px;
+                    color: #111;
+                    margin-top: 14px;
+                    margin-bottom: 4px;
+                    padding-left: ${spaces * 8}px;
+                ">${escaped}</div>`;
+            }
+
+            if (isModuleOrPerson) {
+                // React Interview, Arun, Sumit etc — bold module/person names
+                return `<div style="
+                    font-weight: 600;
+                    font-size: 13px;
+                    color: #1a1a1a;
+                    margin-top: 10px;
+                    margin-bottom: 2px;
+                    padding-left: ${spaces * 8}px;
+                ">${escaped}</div>`;
+            }
+
+            if (isSubHeading) {
+                // Bug:, ATS:, AI Interview: etc — semi-bold sub-headings
+                return `<div style="
+                    font-weight: 600;
+                    font-size: 12px;
+                    color: #374151;
+                    margin-top: 6px;
+                    margin-bottom: 2px;
+                    padding-left: ${spaces * 8}px;
+                ">${escaped}</div>`;
+            }
+
+            if (isBullet) {
+                const bulletIndent = spaces * 8;
+
+                // Split "- " from the rest of the text
+                // So wrapped lines align with text not with dash
+                const dashPart = "- ";
+                const textPart = escaped.startsWith("- ")
+                    ? escaped.slice(2)
+                    : escaped;
+
+                return `<div style="
+                    padding-left: ${bulletIndent}px;
+                    color: #374151;
+                    font-size: 13px;
+                    line-height: 1.8;
+                    display: flex;
+                    gap: 0;
+                    align-items: flex-start;
+                ">
+                    <span style="flex-shrink: 0; margin-right: 4px;">-</span>
+                    <span style="
+                        word-break: break-word;
+                        overflow-wrap: anywhere;
+                        flex: 1;
+                    ">${textPart}</span>
+                </div>`;
+            }
+
+            // Default — any other line
+            return `<div style="
+                padding-left: ${spaces * 8}px;
+                color: #374151;
+                font-size: 13px;
+                word-break: break-word;
+                overflow-wrap: anywhere;
+            ">${escaped}</div>`;
+        });
+
+        return result.join("");
+    }
+
+    async function formatReport() {
+        const rawText = document.getElementById("rawInput").value.trim();
+        const teamName = document.getElementById("teamName").value.trim();
+        const reportDate = document.getElementById("reportDate").value.trim();
+        const dateRange = document.getElementById("dateRange").value.trim();
+
+        if (!rawText) { showError("Please paste your raw notes first."); return; }
+        if (rawText.split(" ").length < 5) { showError("Notes are too short — please add more details."); return; }
+
+        hideError();
+        setState("loading");
+        document.getElementById("formatBtn").disabled = true;
+
+        try {
+            const res = await fetch(`${API}/format-report`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    raw_text: rawText,
+                    team_name: teamName || null,
+                    report_date: reportDate || null,
+                    date_range: dateRange || null
+                })
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                showError(data.detail || "Something went wrong.");
+                setState("empty");
+                return;
+            }
+
+            // Show report
+            document.getElementById("reportOutput").innerHTML = formatWithIndent(data.formatted_report);
+            setState("report");
+
+            // Quality pill
+            const qp = document.getElementById("qualityPill");
+            if (data.quality_check) {
+                qp.textContent = "✓ Quality passed";
+                qp.className = "pill pill-green";
+            } else {
+                qp.textContent = "✗ Missing sections";
+                qp.className = "pill pill-red";
+            }
+
+            document.getElementById("modelPill").textContent = data.model_used;
+            document.getElementById("statusPills").style.display = "flex";
+            document.getElementById("copyBtn").style.display = "block";
+
+        } catch {
+            showError("Cannot connect to API. Is the server running?");
+            setState("empty");
+        } finally {
+            document.getElementById("formatBtn").disabled = false;
+        }
+    }
+
+    function setState(state) {
+        document.getElementById("emptyState").style.display = state === "empty" ? "flex" : "none";
+        document.getElementById("loadingState").style.display = state === "loading" ? "flex" : "none";
+        document.getElementById("reportOutput").style.display = state === "report" ? "block" : "none";
+    }
+
+    function copyReport() {
+        const text = document.getElementById("reportOutput").textContent;
+        navigator.clipboard.writeText(text).then(() => {
+            const btn = document.getElementById("copyBtn");
+            btn.textContent = "Copied!";
+            setTimeout(() => btn.textContent = "Copy Report", 2000);
+        });
+    }
+
+    function clearAll() {
+        document.getElementById("rawInput").value = "";
+        document.getElementById("teamName").value = "";
+        document.getElementById("reportDate").value = "";
+        document.getElementById("dateRange").value = "";
+        setState("empty");
+        document.getElementById("statusPills").style.display = "none";
+        document.getElementById("copyBtn").style.display = "none";
+        hideError();
+    }
+
+    function showError(msg) {
+        const el = document.getElementById("errorMsg");
+        el.textContent = msg;
+        el.style.display = "block";
+    }
+
+    function hideError() {
+        document.getElementById("errorMsg").style.display = "none";
+    }
+
+    loadConfig();
+</script>
+
+</body>
+</html>
