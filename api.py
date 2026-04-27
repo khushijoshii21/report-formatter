@@ -192,11 +192,11 @@ def is_gibberish(text):
 
 def is_too_short(text):
     """
-    Check if input has less than 10 words
+    Check if input has less than 5 words
     Example: "fixed a bug" → too short
     """
     words = text.split()
-    return len(words) < 10
+    return len(words) < 5
 
 def has_no_modules(text):
     """
