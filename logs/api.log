@@ -1,0 +1,429 @@
+2026-04-28 10:37:58,299 | INFO | REQUEST  | GET /
+2026-04-28 10:37:58,301 | INFO | RESPONSE | GET / | Status: 200 | Time: 1.9ms
+2026-04-28 10:37:58,339 | INFO | REQUEST  | GET /favicon.ico
+2026-04-28 10:37:58,339 | INFO | RESPONSE | GET /favicon.ico | Status: 404 | Time: 0.56ms
+2026-04-28 10:38:05,522 | INFO | REQUEST  | GET /ui
+2026-04-28 10:38:05,524 | INFO | RESPONSE | GET /ui | Status: 200 | Time: 2.25ms
+2026-04-28 10:38:05,554 | INFO | REQUEST  | GET /config
+2026-04-28 10:38:05,555 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.68ms
+2026-04-28 10:38:33,045 | INFO | REQUEST  | POST /upload-and-format
+2026-04-28 10:38:33,056 | INFO | RESPONSE | POST /upload-and-format | Status: 400 | Time: 10.9ms
+2026-04-28 10:40:24,275 | INFO | REQUEST  | POST /upload-and-format
+2026-04-28 10:40:26,396 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-28 10:40:26,414 | INFO | HISTORY  | Saved report #1 for MMU
+2026-04-28 10:40:26,414 | INFO | UPLOAD   | File: MMU Mar 30 2026 Mar 23.txt | Quality: True
+2026-04-28 10:40:26,415 | INFO | RESPONSE | POST /upload-and-format | Status: 200 | Time: 2139.79ms
+2026-04-28 10:40:33,707 | INFO | REQUEST  | POST /download-pdf
+2026-04-28 10:40:33,777 | INFO | RESPONSE | POST /download-pdf | Status: 200 | Time: 70.13ms
+2026-04-28 10:41:21,762 | INFO | REQUEST  | GET /docs
+2026-04-28 10:41:21,763 | INFO | RESPONSE | GET /docs | Status: 200 | Time: 0.46ms
+2026-04-28 10:41:21,976 | INFO | REQUEST  | GET /openapi.json
+2026-04-28 10:41:21,992 | INFO | RESPONSE | GET /openapi.json | Status: 200 | Time: 16.28ms
+2026-04-28 10:41:31,778 | INFO | REQUEST  | DELETE /history
+2026-04-28 10:41:31,778 | INFO | HISTORY  | All history cleared
+2026-04-28 10:41:31,779 | INFO | RESPONSE | DELETE /history | Status: 200 | Time: 1.3ms
+2026-04-28 10:41:56,029 | INFO | REQUEST  | GET /logs
+2026-04-28 10:41:56,030 | INFO | RESPONSE | GET /logs | Status: 200 | Time: 1.16ms
+2026-04-28 10:42:21,919 | INFO | REQUEST  | GET /history
+2026-04-28 10:42:21,920 | INFO | RESPONSE | GET /history | Status: 200 | Time: 1.02ms
+2026-04-28 10:42:56,277 | INFO | REQUEST  | GET /ui
+2026-04-28 10:42:56,278 | INFO | RESPONSE | GET /ui | Status: 200 | Time: 0.77ms
+2026-04-28 10:42:56,291 | INFO | REQUEST  | GET /config
+2026-04-28 10:42:56,291 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.5ms
+2026-04-28 10:43:23,261 | INFO | REQUEST  | POST /format-report
+2026-04-28 10:43:24,880 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-28 10:43:24,882 | INFO | HISTORY  | Saved report #1 for MMU
+2026-04-28 10:43:24,882 | INFO | RESPONSE | POST /format-report | Status: 200 | Time: 1621.49ms
+2026-04-28 10:46:49,260 | INFO | REQUEST  | GET /ui
+2026-04-28 10:46:49,263 | INFO | RESPONSE | GET /ui | Status: 200 | Time: 3.26ms
+2026-04-28 10:46:49,289 | INFO | REQUEST  | GET /config
+2026-04-28 10:46:49,289 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.76ms
+2026-04-28 10:46:50,588 | INFO | REQUEST  | GET /ui
+2026-04-28 10:46:50,589 | INFO | RESPONSE | GET /ui | Status: 200 | Time: 0.69ms
+2026-04-28 10:46:50,609 | INFO | REQUEST  | GET /config
+2026-04-28 10:46:50,610 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.67ms
+2026-04-28 10:47:12,301 | INFO | REQUEST  | POST /format-report
+2026-04-28 10:47:14,149 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-28 10:47:14,175 | INFO | HISTORY  | Saved report #2 for MMU
+2026-04-28 10:47:14,175 | INFO | RESPONSE | POST /format-report | Status: 200 | Time: 1874.56ms
+2026-04-28 10:47:16,307 | INFO | REQUEST  | POST /download-pdf
+2026-04-28 10:47:16,406 | INFO | RESPONSE | POST /download-pdf | Status: 200 | Time: 99.29ms
+2026-04-28 10:47:33,753 | INFO | REQUEST  | GET /docs
+2026-04-28 10:47:33,753 | INFO | RESPONSE | GET /docs | Status: 200 | Time: 0.48ms
+2026-04-28 10:47:33,919 | INFO | REQUEST  | GET /openapi.json
+2026-04-28 10:47:33,936 | INFO | RESPONSE | GET /openapi.json | Status: 200 | Time: 16.7ms
+2026-04-28 10:47:38,563 | INFO | REQUEST  | GET /history
+2026-04-28 10:47:38,564 | INFO | RESPONSE | GET /history | Status: 200 | Time: 0.98ms
+2026-04-28 15:05:44,640 | INFO | REQUEST  | GET /
+2026-04-28 15:05:44,644 | INFO | RESPONSE | GET / | Status: 200 | Time: 4.49ms
+2026-04-28 15:05:49,347 | INFO | REQUEST  | GET /ui
+2026-04-28 15:05:49,349 | INFO | RESPONSE | GET /ui | Status: 200 | Time: 1.27ms
+2026-04-28 15:05:49,379 | INFO | REQUEST  | GET /config
+2026-04-28 15:05:49,380 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.87ms
+2026-04-28 15:06:04,003 | INFO | REQUEST  | POST /format-report
+2026-04-28 15:06:06,082 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-28 15:06:06,105 | INFO | HISTORY  | Saved report #3 for MMU
+2026-04-28 15:06:06,111 | INFO | RESPONSE | POST /format-report | Status: 200 | Time: 2107.33ms
+2026-04-28 15:07:15,835 | INFO | REQUEST  | POST /download-pdf
+2026-04-28 15:07:15,955 | INFO | RESPONSE | POST /download-pdf | Status: 200 | Time: 119.75ms
+2026-04-28 15:51:44,071 | INFO | REQUEST  | POST /format-report
+2026-04-28 15:51:45,279 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-28 15:51:45,300 | INFO | HISTORY  | Saved report #4 for MMU
+2026-04-28 15:51:45,310 | INFO | RESPONSE | POST /format-report | Status: 200 | Time: 1243.91ms
+2026-04-29 10:48:19,153 | INFO | REQUEST  | GET /
+2026-04-29 10:48:19,157 | INFO | RESPONSE | GET / | Status: 200 | Time: 4.15ms
+2026-04-29 10:48:19,205 | INFO | REQUEST  | GET /favicon.ico
+2026-04-29 10:48:19,206 | INFO | RESPONSE | GET /favicon.ico | Status: 404 | Time: 0.54ms
+2026-04-29 10:48:24,523 | INFO | REQUEST  | GET /ui
+2026-04-29 10:48:24,525 | INFO | RESPONSE | GET /ui | Status: 200 | Time: 1.49ms
+2026-04-29 10:48:24,554 | INFO | REQUEST  | GET /config
+2026-04-29 10:48:24,555 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.71ms
+2026-04-29 10:48:41,388 | INFO | REQUEST  | POST /format-report
+2026-04-29 10:48:43,372 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-29 10:48:43,392 | INFO | HISTORY  | Saved report #5 for MMU
+2026-04-29 10:48:43,392 | INFO | RESPONSE | POST /format-report | Status: 200 | Time: 2004.25ms
+2026-04-29 10:48:47,203 | INFO | REQUEST  | POST /download-pdf
+2026-04-29 10:48:47,321 | INFO | RESPONSE | POST /download-pdf | Status: 200 | Time: 118.57ms
+2026-04-29 11:08:50,401 | INFO | REQUEST  | GET /
+2026-04-29 11:08:50,402 | INFO | RESPONSE | GET / | Status: 200 | Time: 0.84ms
+2026-04-29 11:08:55,148 | INFO | REQUEST  | GET /ui
+2026-04-29 11:08:55,150 | INFO | RESPONSE | GET /ui | Status: 200 | Time: 2.16ms
+2026-04-29 11:08:55,178 | INFO | REQUEST  | GET /config
+2026-04-29 11:08:55,179 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.61ms
+2026-04-29 11:08:56,975 | INFO | REQUEST  | GET /docs
+2026-04-29 11:08:56,975 | INFO | RESPONSE | GET /docs | Status: 200 | Time: 0.45ms
+2026-04-29 11:08:57,395 | INFO | REQUEST  | GET /openapi.json
+2026-04-29 11:08:57,416 | INFO | RESPONSE | GET /openapi.json | Status: 200 | Time: 21.12ms
+2026-04-29 12:00:48,429 | INFO | REQUEST  | GET /
+2026-04-29 12:00:48,431 | INFO | RESPONSE | GET / | Status: 200 | Time: 2.53ms
+2026-04-29 12:00:53,318 | INFO | REQUEST  | GET /ui
+2026-04-29 12:00:53,320 | INFO | RESPONSE | GET /ui | Status: 200 | Time: 1.78ms
+2026-04-29 12:00:53,351 | INFO | REQUEST  | GET /config
+2026-04-29 12:00:53,352 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.64ms
+2026-04-29 12:01:17,837 | INFO | REQUEST  | POST /query
+2026-04-29 12:01:18,466 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-29 12:01:18,478 | INFO | QUERY    | Question: what did arun work on...
+2026-04-29 12:01:18,479 | INFO | RESPONSE | POST /query | Status: 200 | Time: 641.46ms
+2026-04-29 12:01:44,977 | INFO | REQUEST  | POST /format-report
+2026-04-29 12:01:46,678 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-29 12:01:46,685 | INFO | HISTORY  | Saved report #6 for MMU
+2026-04-29 12:01:46,690 | INFO | RESPONSE | POST /format-report | Status: 200 | Time: 1713.23ms
+2026-04-29 12:01:50,642 | INFO | REQUEST  | GET /ui
+2026-04-29 12:01:50,644 | INFO | RESPONSE | GET /ui | Status: 200 | Time: 2.35ms
+2026-04-29 12:01:50,668 | INFO | REQUEST  | GET /config
+2026-04-29 12:01:50,669 | INFO | RESPONSE | GET /config | Status: 200 | Time: 1.01ms
+2026-04-29 12:02:03,108 | INFO | REQUEST  | POST /query
+2026-04-29 12:02:04,087 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-29 12:02:04,088 | INFO | QUERY    | Question: what did arun work on...
+2026-04-29 12:02:04,089 | INFO | RESPONSE | POST /query | Status: 200 | Time: 981.18ms
+2026-04-29 12:21:02,122 | INFO | REQUEST  | POST /query
+2026-04-29 12:21:04,429 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-29 12:21:04,430 | INFO | QUERY    | Question: summarize what was done last week...
+2026-04-29 12:21:04,431 | INFO | RESPONSE | POST /query | Status: 200 | Time: 2309.12ms
+2026-04-29 12:22:03,479 | INFO | REQUEST  | POST /query
+2026-04-29 12:22:05,460 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-29 12:22:05,460 | INFO | QUERY    | Question: summarize what was done last week...
+2026-04-29 12:22:05,460 | INFO | RESPONSE | POST /query | Status: 200 | Time: 1981.85ms
+2026-04-29 14:01:17,757 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:17,759 | INFO | RESPONSE | GET /config | Status: 200 | Time: 1.48ms
+2026-04-29 14:01:17,881 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:17,882 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.89ms
+2026-04-29 14:01:17,997 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:17,998 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.76ms
+2026-04-29 14:01:18,112 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:18,113 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.81ms
+2026-04-29 14:01:18,230 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:18,230 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.55ms
+2026-04-29 14:01:18,352 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:18,353 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.99ms
+2026-04-29 14:01:18,468 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:18,468 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.54ms
+2026-04-29 14:01:18,583 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:18,583 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.59ms
+2026-04-29 14:01:18,698 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:18,699 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.66ms
+2026-04-29 14:01:18,815 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:18,815 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.56ms
+2026-04-29 14:01:18,931 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:18,932 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.86ms
+2026-04-29 14:01:19,057 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:19,057 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.63ms
+2026-04-29 14:01:19,172 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:19,173 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.74ms
+2026-04-29 14:01:19,290 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:19,291 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.95ms
+2026-04-29 14:01:19,414 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:19,415 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.96ms
+2026-04-29 14:01:19,542 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:19,543 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.87ms
+2026-04-29 14:01:19,670 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:19,671 | INFO | RESPONSE | GET /config | Status: 200 | Time: 1.04ms
+2026-04-29 14:01:42,983 | INFO | REQUEST  | OPTIONS /format-report
+2026-04-29 14:01:42,984 | INFO | RESPONSE | OPTIONS /format-report | Status: 200 | Time: 0.74ms
+2026-04-29 14:01:42,990 | INFO | REQUEST  | POST /format-report
+2026-04-29 14:01:43,108 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:43,109 | INFO | RESPONSE | GET /config | Status: 200 | Time: 1.07ms
+2026-04-29 14:01:43,228 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:43,229 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.91ms
+2026-04-29 14:01:43,351 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:43,352 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.9ms
+2026-04-29 14:01:43,468 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:43,469 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.82ms
+2026-04-29 14:01:43,585 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:43,587 | INFO | RESPONSE | GET /config | Status: 200 | Time: 1.14ms
+2026-04-29 14:01:43,707 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:43,708 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.94ms
+2026-04-29 14:01:44,610 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-29 14:01:44,620 | INFO | HISTORY  | Saved report #7 for MMU
+2026-04-29 14:01:44,620 | INFO | RESPONSE | POST /format-report | Status: 200 | Time: 1630.89ms
+2026-04-29 14:01:44,739 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:44,740 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.79ms
+2026-04-29 14:01:44,858 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:44,858 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.84ms
+2026-04-29 14:01:44,974 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:44,975 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.63ms
+2026-04-29 14:01:45,092 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:45,093 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.87ms
+2026-04-29 14:01:45,210 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:45,211 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.73ms
+2026-04-29 14:01:45,326 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:45,327 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.84ms
+2026-04-29 14:01:45,445 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:45,445 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.68ms
+2026-04-29 14:01:45,573 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:45,574 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.75ms
+2026-04-29 14:01:45,690 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:45,690 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.76ms
+2026-04-29 14:01:45,806 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:45,807 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.82ms
+2026-04-29 14:01:45,924 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:45,925 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.81ms
+2026-04-29 14:01:46,041 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:46,042 | INFO | RESPONSE | GET /config | Status: 200 | Time: 1.04ms
+2026-04-29 14:01:46,164 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:46,165 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.85ms
+2026-04-29 14:01:46,281 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:46,282 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.88ms
+2026-04-29 14:01:46,406 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:46,407 | INFO | RESPONSE | GET /config | Status: 200 | Time: 1.14ms
+2026-04-29 14:01:46,535 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:46,536 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.85ms
+2026-04-29 14:01:46,669 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:46,670 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.85ms
+2026-04-29 14:01:46,785 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:46,787 | INFO | RESPONSE | GET /config | Status: 200 | Time: 1.11ms
+2026-04-29 14:01:46,905 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:46,906 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.94ms
+2026-04-29 14:01:47,025 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:47,025 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.62ms
+2026-04-29 14:01:47,154 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:47,155 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.82ms
+2026-04-29 14:01:47,273 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:47,274 | INFO | RESPONSE | GET /config | Status: 200 | Time: 1.06ms
+2026-04-29 14:01:47,391 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:47,392 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.68ms
+2026-04-29 14:01:47,510 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:47,510 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.79ms
+2026-04-29 14:01:47,626 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:47,627 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.72ms
+2026-04-29 14:01:47,757 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:47,757 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.58ms
+2026-04-29 14:01:47,876 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:47,877 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.84ms
+2026-04-29 14:01:47,994 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:47,995 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.64ms
+2026-04-29 14:01:48,122 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:48,123 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.59ms
+2026-04-29 14:01:48,252 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:48,253 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.66ms
+2026-04-29 14:01:48,371 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:48,372 | INFO | RESPONSE | GET /config | Status: 200 | Time: 1.2ms
+2026-04-29 14:01:48,490 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:48,491 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.82ms
+2026-04-29 14:01:48,606 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:48,607 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.64ms
+2026-04-29 14:01:48,724 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:48,724 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.59ms
+2026-04-29 14:01:48,841 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:48,842 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.72ms
+2026-04-29 14:01:48,961 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:48,962 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.83ms
+2026-04-29 14:01:49,082 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:49,083 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.91ms
+2026-04-29 14:01:49,215 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:49,216 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.97ms
+2026-04-29 14:01:49,337 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:49,338 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.72ms
+2026-04-29 14:01:49,455 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:49,455 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.73ms
+2026-04-29 14:01:49,572 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:49,573 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.77ms
+2026-04-29 14:01:49,689 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:49,690 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.64ms
+2026-04-29 14:01:49,817 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:49,818 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.91ms
+2026-04-29 14:01:49,935 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:49,936 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.73ms
+2026-04-29 14:01:50,053 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:50,054 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.98ms
+2026-04-29 14:01:50,171 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:50,172 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.92ms
+2026-04-29 14:01:50,311 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:50,313 | INFO | RESPONSE | GET /config | Status: 200 | Time: 1.99ms
+2026-04-29 14:01:50,455 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:50,458 | INFO | RESPONSE | GET /config | Status: 200 | Time: 2.75ms
+2026-04-29 14:01:50,573 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:50,574 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.89ms
+2026-04-29 14:01:50,690 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:50,690 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.85ms
+2026-04-29 14:01:50,820 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:50,821 | INFO | RESPONSE | GET /config | Status: 200 | Time: 1.5ms
+2026-04-29 14:01:55,715 | INFO | REQUEST  | POST /format-report
+2026-04-29 14:01:55,836 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:55,837 | INFO | RESPONSE | GET /config | Status: 200 | Time: 1.64ms
+2026-04-29 14:01:55,965 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:55,965 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.73ms
+2026-04-29 14:01:56,082 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:56,083 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.75ms
+2026-04-29 14:01:56,202 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:56,202 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.84ms
+2026-04-29 14:01:56,320 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:56,321 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.54ms
+2026-04-29 14:01:56,448 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:56,449 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.76ms
+2026-04-29 14:01:56,564 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:56,565 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.77ms
+2026-04-29 14:01:56,683 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:56,684 | INFO | RESPONSE | GET /config | Status: 200 | Time: 1.01ms
+2026-04-29 14:01:56,801 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:56,802 | INFO | RESPONSE | GET /config | Status: 200 | Time: 1.25ms
+2026-04-29 14:01:56,921 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:56,922 | INFO | RESPONSE | GET /config | Status: 200 | Time: 1.01ms
+2026-04-29 14:01:57,051 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:57,052 | INFO | RESPONSE | GET /config | Status: 200 | Time: 1.01ms
+2026-04-29 14:01:57,173 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:57,173 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.86ms
+2026-04-29 14:01:57,295 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:57,295 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.66ms
+2026-04-29 14:01:57,307 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-29 14:01:57,310 | INFO | HISTORY  | Saved report #8 for MMU
+2026-04-29 14:01:57,311 | INFO | RESPONSE | POST /format-report | Status: 200 | Time: 1596.02ms
+2026-04-29 14:01:57,431 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:57,432 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.82ms
+2026-04-29 14:01:57,550 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:57,551 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.9ms
+2026-04-29 14:01:57,670 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:57,671 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.91ms
+2026-04-29 14:01:57,788 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:57,790 | INFO | RESPONSE | GET /config | Status: 200 | Time: 1.79ms
+2026-04-29 14:01:57,908 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:57,908 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.73ms
+2026-04-29 14:01:58,024 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:58,025 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.85ms
+2026-04-29 14:01:58,141 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:58,142 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.69ms
+2026-04-29 14:01:58,257 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:58,258 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.78ms
+2026-04-29 14:01:58,373 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:58,374 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.66ms
+2026-04-29 14:01:58,499 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:58,500 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.7ms
+2026-04-29 14:01:58,627 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:58,627 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.56ms
+2026-04-29 14:01:58,744 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:58,745 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.77ms
+2026-04-29 14:01:58,866 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:58,868 | INFO | RESPONSE | GET /config | Status: 200 | Time: 2.26ms
+2026-04-29 14:01:58,987 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:58,989 | INFO | RESPONSE | GET /config | Status: 200 | Time: 2.32ms
+2026-04-29 14:01:59,118 | INFO | REQUEST  | GET /config
+2026-04-29 14:01:59,119 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.59ms
+2026-04-29 14:02:04,736 | INFO | REQUEST  | POST /format-report
+2026-04-29 14:02:06,523 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-29 14:02:06,525 | INFO | HISTORY  | Saved report #9 for MMU
+2026-04-29 14:02:06,525 | INFO | RESPONSE | POST /format-report | Status: 200 | Time: 1789.11ms
+2026-04-29 15:47:52,891 | INFO | REQUEST  | POST /format-report
+2026-04-29 15:47:54,687 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-29 15:47:54,698 | INFO | HISTORY  | Saved report #10 for MMU
+2026-04-29 15:47:54,699 | INFO | RESPONSE | POST /format-report | Status: 200 | Time: 1807.57ms
+2026-04-29 15:48:05,655 | INFO | REQUEST  | POST /format-report
+2026-04-29 15:48:07,487 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-29 15:48:07,497 | INFO | HISTORY  | Saved report #11 for MMU
+2026-04-29 15:48:07,497 | INFO | RESPONSE | POST /format-report | Status: 200 | Time: 1842.49ms
+2026-04-29 15:48:20,664 | INFO | REQUEST  | GET /ui
+2026-04-29 15:48:20,665 | INFO | RESPONSE | GET /ui | Status: 200 | Time: 1.05ms
+2026-04-29 15:48:20,701 | INFO | REQUEST  | GET /config
+2026-04-29 15:48:20,701 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.55ms
+2026-04-29 15:48:45,958 | INFO | REQUEST  | POST /query
+2026-04-29 15:48:47,584 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-29 15:48:47,593 | INFO | QUERY    | Question: What work was done on Live Interview?...
+2026-04-29 15:48:47,593 | INFO | RESPONSE | POST /query | Status: 200 | Time: 1635.4ms
+2026-04-29 15:49:05,758 | INFO | REQUEST  | POST /query
+2026-04-29 15:49:05,844 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-29 15:49:05,847 | INFO | Retrying request to /openai/v1/chat/completions in 15.000000 seconds
+2026-04-29 15:49:20,933 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-29 15:49:20,934 | INFO | Retrying request to /openai/v1/chat/completions in 3.000000 seconds
+2026-04-29 15:49:27,259 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-29 15:49:27,260 | INFO | QUERY    | Question: Which bugs were fixed across all reports?...
+2026-04-29 15:49:27,260 | INFO | RESPONSE | POST /query | Status: 200 | Time: 21502.37ms
+2026-04-29 15:49:41,356 | INFO | REQUEST  | POST /query
+2026-04-29 15:49:41,585 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-29 15:49:41,586 | INFO | Retrying request to /openai/v1/chat/completions in 31.000000 seconds
+2026-04-29 15:50:12,675 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-29 15:50:12,676 | INFO | Retrying request to /openai/v1/chat/completions in 3.000000 seconds
+2026-04-29 15:50:17,036 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-29 15:50:17,038 | INFO | QUERY    | Question: What are the next week tasks from all reports?...
+2026-04-29 15:50:17,046 | INFO | RESPONSE | POST /query | Status: 200 | Time: 35690.56ms
+2026-04-29 15:50:42,970 | INFO | REQUEST  | POST /query
+2026-04-29 15:50:43,064 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-29 15:50:43,064 | INFO | Retrying request to /openai/v1/chat/completions in 12.000000 seconds
+2026-04-29 15:50:55,150 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-29 15:50:55,152 | INFO | Retrying request to /openai/v1/chat/completions in 4.000000 seconds
+2026-04-29 15:51:01,949 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-29 15:51:01,957 | INFO | QUERY    | Question: Summarize all the key achievements...
+2026-04-29 15:51:01,958 | INFO | RESPONSE | POST /query | Status: 200 | Time: 18987.85ms
+2026-04-29 15:51:26,947 | INFO | REQUEST  | POST /query
+2026-04-29 15:51:27,036 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-29 15:51:27,036 | INFO | Retrying request to /openai/v1/chat/completions in 14.000000 seconds
+2026-04-29 15:51:41,204 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-29 15:51:41,204 | INFO | Retrying request to /openai/v1/chat/completions in 3.000000 seconds
+2026-04-29 15:51:45,608 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-29 15:51:45,610 | INFO | QUERY    | Question: Which modules had the most updates?...
+2026-04-29 15:51:45,611 | INFO | RESPONSE | POST /query | Status: 200 | Time: 18663.73ms
+2026-04-29 15:52:21,632 | INFO | REQUEST  | POST /query
+2026-04-29 15:52:21,729 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-29 15:52:21,730 | INFO | Retrying request to /openai/v1/chat/completions in 2.000000 seconds
+2026-04-29 15:52:23,910 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-29 15:52:23,910 | INFO | Retrying request to /openai/v1/chat/completions in 4.000000 seconds
+2026-04-29 15:52:28,929 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-29 15:52:28,931 | INFO | QUERY    | Question: What did Arun work on?...
+2026-04-29 15:52:28,932 | INFO | RESPONSE | POST /query | Status: 200 | Time: 7300.16ms
+2026-04-29 15:52:46,404 | INFO | REQUEST  | POST /query
+2026-04-29 15:52:46,538 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-29 15:52:46,538 | INFO | Retrying request to /openai/v1/chat/completions in 23.000000 seconds
+2026-04-29 15:53:13,060 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-29 15:53:13,061 | INFO | QUERY    | Question: Which ticket IDs were fixed?...
+2026-04-29 15:53:13,061 | INFO | RESPONSE | POST /query | Status: 200 | Time: 26657.63ms
+2026-04-29 15:54:09,711 | INFO | REQUEST  | POST /query
+2026-04-29 15:54:09,896 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-29 15:54:09,914 | INFO | RESPONSE | POST /query | Status: 500 | Time: 202.93ms
+2026-04-29 16:04:51,632 | INFO | REQUEST  | GET /
+2026-04-29 16:04:51,641 | INFO | RESPONSE | GET / | Status: 200 | Time: 8.69ms
+2026-04-29 16:04:56,327 | INFO | REQUEST  | GET /ui
+2026-04-29 16:04:56,329 | INFO | RESPONSE | GET /ui | Status: 200 | Time: 1.42ms
+2026-04-29 16:04:56,336 | INFO | REQUEST  | GET /static/style.css
+2026-04-29 16:04:56,338 | INFO | RESPONSE | GET /static/style.css | Status: 404 | Time: 1.57ms
+2026-04-29 16:04:56,338 | INFO | REQUEST  | GET /static/script.js
+2026-04-29 16:04:56,339 | INFO | RESPONSE | GET /static/script.js | Status: 404 | Time: 0.93ms
+2026-04-29 16:05:19,148 | INFO | REQUEST  | GET /ui
+2026-04-29 16:05:19,150 | INFO | RESPONSE | GET /ui | Status: 200 | Time: 1.78ms
+2026-04-29 16:05:19,164 | INFO | REQUEST  | GET /static/style.css
+2026-04-29 16:05:19,165 | INFO | REQUEST  | GET /static/script.js
+2026-04-29 16:05:19,169 | INFO | RESPONSE | GET /static/script.js | Status: 200 | Time: 3.76ms
+2026-04-29 16:05:19,169 | INFO | RESPONSE | GET /static/style.css | Status: 200 | Time: 5.14ms
+2026-04-29 16:05:19,212 | INFO | REQUEST  | GET /config
+2026-04-29 16:05:19,213 | INFO | RESPONSE | GET /config | Status: 200 | Time: 0.8ms
+2026-04-29 16:05:35,807 | INFO | REQUEST  | POST /format-report
+2026-04-29 16:05:37,597 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-29 16:05:37,619 | INFO | HISTORY  | Saved report #12 for MMU
+2026-04-29 16:05:37,620 | INFO | RESPONSE | POST /format-report | Status: 200 | Time: 1812.22ms

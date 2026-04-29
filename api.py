@@ -1,15 +1,36 @@
 import os
 import re
 import json
+import time
+import logging
+import io
+from datetime import datetime
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from typing import Optional
 
 load_dotenv()
+
+
+# -------------------------------------------------------
+# LOGGING SETUP
+# -------------------------------------------------------
+os.makedirs("logs", exist_ok=True)
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(message)s",
+    handlers=[
+        logging.FileHandler("logs/api.log"),
+        logging.StreamHandler()
+    ]
+)
+
+logger = logging.getLogger(__name__)
 
 
 # -------------------------------------------------------
@@ -44,6 +65,16 @@ def setup_client():
         raise Exception(f"Unknown API provider: {provider}")
 
 client, provider = setup_client()
+
+
+# -------------------------------------------------------
+# RATE LIMITING
+# -------------------------------------------------------
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
+
+limiter = Limiter(key_func=get_remote_address)
 
 
 # -------------------------------------------------------
@@ -134,12 +165,34 @@ app = FastAPI(
     version="1.0.0"
 )
 
+app.state.limiter = limiter
+# Serve static files (CSS, JS) from /static folder
+app.mount("/static", StaticFiles(directory="static"), name="static")
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"]
 )
+
+
+# -------------------------------------------------------
+# REQUEST LOGGING MIDDLEWARE
+# -------------------------------------------------------
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    start_time = time.time()
+    logger.info(f"REQUEST  | {request.method} {request.url.path}")
+    response = await call_next(request)
+    duration = round((time.time() - start_time) * 1000, 2)
+    logger.info(
+        f"RESPONSE | {request.method} {request.url.path} "
+        f"| Status: {response.status_code} "
+        f"| Time: {duration}ms"
+    )
+    return response
 
 
 # -------------------------------------------------------
@@ -167,23 +220,18 @@ class BatchRequest(BaseModel):
     report_date: Optional[str] = None
     date_range: Optional[str] = None
 
+class QueryRequest(BaseModel):
+    question: str
+    max_reports: Optional[int] = 10
+
 
 # -------------------------------------------------------
-# EDGE CASE DETECTION FUNCTIONS
-# Each function checks one specific problem
-# Returns True if problem is detected
+# EDGE CASE DETECTION
 # -------------------------------------------------------
-
 def is_empty(text):
-    """Check if input is empty or only whitespace"""
     return not text or not text.strip()
 
 def is_gibberish(text):
-    """
-    Check if input is mostly symbols/special characters
-    If less than 60% of non-space characters are letters = gibberish
-    Example: @@### $$$ !!! %%% *** → gibberish
-    """
     letters = sum(c.isalpha() for c in text)
     total = len(text.replace(" ", "").replace("\n", ""))
     if total == 0:
@@ -191,18 +239,10 @@ def is_gibberish(text):
     return (letters / total) < 0.6
 
 def is_too_short(text):
-    """
-    Check if input has less than 5 words
-    Example: "fixed a bug" → too short
-    """
     words = text.split()
     return len(words) < 5
 
 def has_no_modules(text):
-    """
-    Check if input has no recognizable engineering keywords
-    If less than 2 keywords found = no modules detected
-    """
     common_keywords = [
         "interview", "integration", "api", "bot", "script",
         "dashboard", "app", "service", "fix", "feat", "enhc",
@@ -215,32 +255,16 @@ def has_no_modules(text):
     matches = sum(1 for keyword in common_keywords if keyword in text_lower)
     return matches < 2
 
-
-# -------------------------------------------------------
-# VALIDATE INPUT
-# Runs all edge case checks in the correct order
-# Returns error message if problem found, None if clean
-# Order matters:
-# 1. Empty first — no point checking further if empty
-# 2. Gibberish second — before short check so @@### $$$
-#    gets caught as gibberish not "too short"
-# 3. Too short third
-# 4. No modules last
-# -------------------------------------------------------
 def validate_input(text):
     if is_empty(text):
         return "Input is empty — please paste your raw notes."
-
     if is_gibberish(text):
         return "Input appears to contain mostly symbols or special characters. Please paste proper engineering notes."
-
     if is_too_short(text):
         return "Input is too short — please provide more details about what was done this week."
-
     if has_no_modules(text):
         return "Could not detect any module or project names in your notes. Please make sure your input contains proper engineering updates."
-
-    return None  # No issues found
+    return None
 
 
 # -------------------------------------------------------
@@ -303,7 +327,6 @@ Raw updates to format:
             temperature=config["temperature"]
         )
         return response.choices[0].message.content
-
     elif provider == "gemini":
         from google.genai import types
         response = client.models.generate_content(
@@ -315,6 +338,164 @@ Raw updates to format:
             )
         )
         return response.text
+
+
+# -------------------------------------------------------
+# REPORT HISTORY
+# -------------------------------------------------------
+HISTORY_FILE = "data/report_history.json"
+
+def load_history():
+    if not os.path.exists(HISTORY_FILE):
+        return []
+    with open(HISTORY_FILE, "r") as f:
+        return json.load(f)
+
+def save_to_history(raw_text, formatted_report, team_name, report_date, date_range, quality_check):
+    history = load_history()
+    entry = {
+        "id": len(history) + 1,
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "team_name": team_name,
+        "report_date": report_date,
+        "date_range": date_range,
+        "quality_check": quality_check,
+        "raw_input_length": len(raw_text.split()),
+        "formatted_report": formatted_report
+    }
+    history.append(entry)
+    os.makedirs("data", exist_ok=True)
+    with open(HISTORY_FILE, "w") as f:
+        json.dump(history, f, indent=2)
+    logger.info(f"HISTORY  | Saved report #{entry['id']} for {team_name}")
+    return entry["id"]
+
+
+# -------------------------------------------------------
+# PDF GENERATION
+# -------------------------------------------------------
+def generate_pdf(formatted_report: str) -> io.BytesIO:
+    from reportlab.lib.pagesizes import A4
+    from reportlab.lib.styles import ParagraphStyle
+    from reportlab.lib.units import mm
+    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+    from reportlab.lib import colors
+
+    buffer = io.BytesIO()
+    doc = SimpleDocTemplate(
+        buffer,
+        pagesize=A4,
+        rightMargin=25*mm,
+        leftMargin=25*mm,
+        topMargin=20*mm,
+        bottomMargin=20*mm
+    )
+
+    MAIN_SECTIONS = [
+        "Key Updates",
+        "Key Achievements",
+        "Challenges Encountered",
+        "Team Challenges",
+        "Key Tasks Scheduled for Next Week"
+    ]
+
+    header_style = ParagraphStyle(
+        'Header',
+        fontSize=13,
+        fontName='Helvetica-Bold',
+        spaceAfter=10,
+        spaceBefore=0,
+        textColor=colors.HexColor('#111111')
+    )
+    section_style = ParagraphStyle(
+        'Section',
+        fontSize=12,
+        fontName='Helvetica-Bold',
+        spaceBefore=16,
+        spaceAfter=6,
+        textColor=colors.HexColor('#111111')
+    )
+    module_style = ParagraphStyle(
+        'Module',
+        fontSize=11,
+        fontName='Helvetica-Bold',
+        leftIndent=12,
+        spaceBefore=10,
+        spaceAfter=3,
+        textColor=colors.HexColor('#1a1a1a')
+    )
+    subheading_style = ParagraphStyle(
+        'SubHeading',
+        fontSize=10,
+        fontName='Helvetica-BoldOblique',
+        leftIndent=24,
+        spaceBefore=4,
+        spaceAfter=1,
+        textColor=colors.HexColor('#374151')
+    )
+    bullet_style = ParagraphStyle(
+        'Bullet',
+        fontSize=9.5,
+        fontName='Helvetica',
+        leftIndent=32,
+        firstLineIndent=-10,
+        spaceAfter=3,
+        textColor=colors.HexColor('#374151'),
+        leading=15
+    )
+    deep_bullet_style = ParagraphStyle(
+        'DeepBullet',
+        fontSize=9.5,
+        fontName='Helvetica',
+        leftIndent=48,
+        firstLineIndent=-10,
+        spaceAfter=3,
+        textColor=colors.HexColor('#374151'),
+        leading=15
+    )
+
+    story = []
+    lines = formatted_report.split("\n")
+
+    for line in lines:
+        if not line.strip():
+            story.append(Spacer(1, 3))
+            continue
+
+        spaces = len(line) - len(line.lstrip())
+        content = line.strip()
+
+        content = (content
+            .replace("&", "&amp;")
+            .replace("<", "&lt;")
+            .replace(">", "&gt;")
+        )
+
+        is_bullet = content.startswith("-")
+        is_main_section = any(content == s or content.startswith(s) for s in MAIN_SECTIONS)
+
+        if spaces == 0 and is_main_section:
+            story.append(Spacer(1, 6))
+            story.append(Paragraph(content, section_style))
+        elif spaces == 0 and not is_bullet:
+            story.append(Paragraph(content, header_style))
+            story.append(Spacer(1, 4))
+        elif 1 <= spaces <= 4 and not is_bullet:
+            story.append(Paragraph(content, module_style))
+        elif 5 <= spaces <= 8 and not is_bullet:
+            story.append(Paragraph(content, subheading_style))
+        elif is_bullet and spaces <= 8:
+            text = content[1:].strip()
+            story.append(Paragraph(f"&#8226; {text}", bullet_style))
+        elif is_bullet and spaces > 8:
+            text = content[1:].strip()
+            story.append(Paragraph(f"&#8226; {text}", deep_bullet_style))
+        else:
+            story.append(Paragraph(content, bullet_style))
+
+    doc.build(story)
+    buffer.seek(0)
+    return buffer
 
 
 # -------------------------------------------------------
@@ -330,6 +511,11 @@ def root():
             "ui": "GET /ui",
             "format_report": "POST /format-report",
             "batch": "POST /format-report/batch",
+            "upload": "POST /upload-and-format",
+            "download_pdf": "POST /download-pdf",
+            "query": "POST /query",
+            "history": "GET /history",
+            "logs": "GET /logs",
             "health": "GET /health",
             "config": "GET /config",
             "reload_config": "POST /reload-config",
@@ -382,29 +568,84 @@ def reload_config():
             "date_range": config["date_range"]
         }
     except Exception as e:
-        raise HTTPException(
-            status_code=500,
-            detail=f"Failed to reload config: {str(e)}"
-        )
+        raise HTTPException(status_code=500, detail=f"Failed to reload config: {str(e)}")
+
+
+@app.get("/logs")
+def get_logs(lines: int = 50):
+    log_path = "logs/api.log"
+    if not os.path.exists(log_path):
+        return {"logs": [], "message": "No logs yet"}
+    with open(log_path, "r") as f:
+        all_lines = f.readlines()
+    recent_lines = all_lines[-lines:]
+    return {
+        "total_lines": len(all_lines),
+        "showing_last": lines,
+        "logs": [line.strip() for line in recent_lines]
+    }
+
+
+@app.get("/history")
+def get_history():
+    history = load_history()
+    if not history:
+        return {"total": 0, "reports": []}
+    summaries = []
+    for entry in reversed(history):
+        summaries.append({
+            "id": entry["id"],
+            "timestamp": entry["timestamp"],
+            "team_name": entry["team_name"],
+            "report_date": entry["report_date"],
+            "date_range": entry["date_range"],
+            "quality_check": entry["quality_check"]
+        })
+    return {"total": len(history), "reports": summaries}
+
+
+@app.get("/history/{report_id}")
+def get_report_by_id(report_id: int):
+    history = load_history()
+    for entry in history:
+        if entry["id"] == report_id:
+            return entry
+    raise HTTPException(status_code=404, detail=f"Report #{report_id} not found")
+
+
+@app.delete("/history")
+def clear_history():
+    if os.path.exists(HISTORY_FILE):
+        os.remove(HISTORY_FILE)
+        logger.info("HISTORY  | All history cleared")
+        return {"message": "Report history cleared successfully"}
+    return {"message": "No history to clear"}
 
 
 @app.post("/format-report", response_model=FormatResponse)
-def format_report(request: FormatRequest):
-
-    # Run all edge case checks in correct order
-    error = validate_input(request.raw_text)
+@limiter.limit("10/minute")
+def format_report(request: Request, body: FormatRequest):
+    error = validate_input(body.raw_text)
     if error:
         raise HTTPException(status_code=400, detail=error)
 
-    # Use values from request or fall back to config
-    team_name = request.team_name or config["team_name"]
-    report_date = request.report_date or config["report_date"]
-    date_range = request.date_range or config["date_range"]
+    team_name = body.team_name or config["team_name"]
+    report_date = body.report_date or config["report_date"]
+    date_range = body.date_range or config["date_range"]
 
     try:
-        formatted = call_ai(request.raw_text, team_name, report_date, date_range)
+        formatted = call_ai(body.raw_text, team_name, report_date, date_range)
         formatted = fix_ticket_ids(formatted)
         passed, missing = check_quality(formatted)
+
+        save_to_history(
+            raw_text=body.raw_text,
+            formatted_report=formatted,
+            team_name=team_name,
+            report_date=report_date,
+            date_range=date_range,
+            quality_check=passed
+        )
 
         return FormatResponse(
             formatted_report=formatted,
@@ -416,52 +657,31 @@ def format_report(request: FormatRequest):
             quality_check=passed,
             missing_sections=missing
         )
-
     except Exception as e:
-        raise HTTPException(
-            status_code=500,
-            detail=f"Error formatting report: {str(e)}"
-        )
+        raise HTTPException(status_code=500, detail=f"Error formatting report: {str(e)}")
 
 
 @app.post("/format-report/batch")
 def format_batch(request: BatchRequest):
-
     if not request.reports:
-        raise HTTPException(
-            status_code=400,
-            detail="Reports list cannot be empty"
-        )
-
+        raise HTTPException(status_code=400, detail="Reports list cannot be empty")
     if len(request.reports) > 10:
-        raise HTTPException(
-            status_code=400,
-            detail="Maximum 10 reports per batch request"
-        )
+        raise HTTPException(status_code=400, detail="Maximum 10 reports per batch request")
 
     team_name = request.team_name or config["team_name"]
     report_date = request.report_date or config["report_date"]
     date_range = request.date_range or config["date_range"]
-
     results = []
 
     for i, raw_text in enumerate(request.reports):
-
-        # Validate each report individually
         error = validate_input(raw_text)
         if error:
-            results.append({
-                "index": i,
-                "status": "error",
-                "error": error
-            })
+            results.append({"index": i, "status": "error", "error": error})
             continue
-
         try:
             formatted = call_ai(raw_text, team_name, report_date, date_range)
             formatted = fix_ticket_ids(formatted)
             passed, missing = check_quality(formatted)
-
             results.append({
                 "index": i,
                 "status": "success",
@@ -469,13 +689,8 @@ def format_batch(request: BatchRequest):
                 "quality_check": passed,
                 "missing_sections": missing
             })
-
         except Exception as e:
-            results.append({
-                "index": i,
-                "status": "error",
-                "error": str(e)
-            })
+            results.append({"index": i, "status": "error", "error": str(e)})
 
     return {
         "total": len(request.reports),
@@ -483,3 +698,161 @@ def format_batch(request: BatchRequest):
         "failed": sum(1 for r in results if r["status"] == "error"),
         "results": results
     }
+
+
+@app.post("/upload-and-format")
+async def upload_and_format(
+    file: UploadFile = File(...),
+    team_name: str = None,
+    report_date: str = None,
+    date_range: str = None
+):
+    if not file.filename.endswith(".txt"):
+        raise HTTPException(status_code=400, detail="Only .txt files are supported")
+
+    content = await file.read()
+    raw_text = content.decode("utf-8")
+
+    error = validate_input(raw_text)
+    if error:
+        raise HTTPException(status_code=400, detail=error)
+
+    team_name = team_name or config["team_name"]
+    report_date = report_date or config["report_date"]
+    date_range = date_range or config["date_range"]
+
+    try:
+        formatted = call_ai(raw_text, team_name, report_date, date_range)
+        formatted = fix_ticket_ids(formatted)
+        passed, missing = check_quality(formatted)
+
+        save_to_history(
+            raw_text=raw_text,
+            formatted_report=formatted,
+            team_name=team_name,
+            report_date=report_date,
+            date_range=date_range,
+            quality_check=passed
+        )
+
+        logger.info(f"UPLOAD   | File: {file.filename} | Quality: {passed}")
+
+        return {
+            "filename": file.filename,
+            "formatted_report": formatted,
+            "quality_check": passed,
+            "missing_sections": missing,
+            "model_used": config["model"]
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error formatting uploaded file: {str(e)}")
+
+
+@app.post("/download-pdf")
+def download_pdf(data: dict):
+    formatted_report = data.get("formatted_report", "")
+    if not formatted_report:
+        raise HTTPException(status_code=400, detail="No report text provided")
+
+    try:
+        buffer = generate_pdf(formatted_report)
+        return StreamingResponse(
+            buffer,
+            media_type="application/pdf",
+            headers={"Content-Disposition": "attachment; filename=formatted_report.pdf"}
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error generating PDF: {str(e)}")
+
+
+@app.post("/query")
+def query_reports(request: QueryRequest):
+    if not request.question or not request.question.strip():
+        raise HTTPException(status_code=400, detail="Question cannot be empty")
+
+    if len(request.question.strip()) < 5:
+        raise HTTPException(status_code=400, detail="Question is too short — please ask a more specific question")
+
+    history = load_history()
+
+    if not history:
+        raise HTTPException(
+            status_code=404,
+            detail="No reports found. Please format some reports first before querying."
+        )
+
+    recent_reports = history[-request.max_reports:]
+
+    reports_context = ""
+    for i, entry in enumerate(recent_reports, 1):
+        reports_context += f"""
+--- REPORT {i} ---
+Team: {entry['team_name']}
+Date: {entry['report_date']}
+Range: {entry['date_range']}
+Formatted on: {entry['timestamp']}
+
+{entry['formatted_report']}
+
+"""
+
+    query_system_prompt = """
+You are an intelligent assistant that answers questions about weekly engineering reports.
+You have access to multiple weekly reports and must answer questions based on their content.
+
+Rules:
+- Answer based ONLY on information present in the provided reports
+- Be specific — mention names, ticket IDs, module names from the reports
+- If information is not in the reports, say "This information was not found in the available reports"
+- Keep answers clear and well structured
+- If asked about a person, find all their work across all reports
+- If asked about a module, find all updates for that module across all reports
+- If asked about tickets, find the specific ticket IDs mentioned
+- Always mention which report by date the information came from
+"""
+
+    user_message = f"""
+Here are the weekly engineering reports:
+
+{reports_context}
+
+Question: {request.question}
+
+Please answer the question based on the reports above.
+"""
+
+    try:
+        if provider in ["groq", "openai"]:
+            response = client.chat.completions.create(
+                model=config["model"],
+                messages=[
+                    {"role": "system", "content": query_system_prompt},
+                    {"role": "user", "content": user_message}
+                ],
+                max_tokens=1500,
+                temperature=0.3
+            )
+            answer = response.choices[0].message.content
+        elif provider == "gemini":
+            from google.genai import types
+            response = client.models.generate_content(
+                model=config["model"],
+                contents=query_system_prompt + "\n\n" + user_message,
+                config=types.GenerateContentConfig(
+                    max_output_tokens=1500,
+                    temperature=0.3
+                )
+            )
+            answer = response.text
+
+        logger.info(f"QUERY    | Question: {request.question[:50]}...")
+
+        return {
+            "question": request.question,
+            "answer": answer,
+            "reports_searched": len(recent_reports),
+            "model_used": config["model"]
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error querying reports: {str(e)}")

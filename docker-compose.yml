@@ -1,0 +1,41 @@
+# -------------------------------------------------------
+# DOCKER COMPOSE FILE
+# This defines how to run your Report Formatter
+# as a Docker container
+# -------------------------------------------------------
+version: '3.8'
+
+services:
+
+  # Your FastAPI application
+  report-formatter:
+
+    # Build from the Dockerfile in current directory
+    build: .
+
+    # Name of the container
+    container_name: report-formatter-api
+
+    # Map port 8000 on your laptop to port 8000
+    # in the container
+    # Format: "laptop_port:container_port"
+    ports:
+      - "8000:8000"
+
+    # Load environment variables from .env file
+    # This is how your API keys get into the container
+    # without being copied into the image
+    env_file:
+      - .env
+
+    # Mount config.json as a volume
+    # This means changes to config.json on your laptop
+    # are instantly reflected inside the container
+    # without rebuilding
+    volumes:
+      - ./config.json:/app/config.json
+      - ./templates:/app/templates
+      - ./data:/app/data
+
+    # Restart automatically if container crashes
+    restart: unless-stopped

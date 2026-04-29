@@ -1,0 +1,29 @@
+# Virtual environment — Docker installs its own
+venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Test cache
+.pytest_cache/
+htmlcov/
+.coverage
+
+# Environment file — never copy API keys into container
+.env
+
+# Raw data and formatted reports — not needed in container
+data/raw/
+data/formatted/
+data/dataset/
+
+# Git files
+.git/
+.gitignore
+
+# VS Code settings
+.vscode/
